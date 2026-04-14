@@ -53,8 +53,6 @@
     margin-right: 10px;
 }
 
-
-
 body{
     background-color: rgb(241, 225, 255);
 }
@@ -76,7 +74,6 @@ body{
     margin-top: 10%;
     
 }
-
 
 .todososprodutos {
     display: flex;
@@ -118,8 +115,21 @@ body{
     box-sizing: border-box;
 }
     
-#busca {border-radius: 5px;
-    
+#busca {
+    border-radius: 5px;
 }
 
-h1{text-align: center;}
+h1{
+    text-align: center;
+}
+
+.item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.item ul{
+    padding-left: 20px;
+    list-style-type: none;
+}
