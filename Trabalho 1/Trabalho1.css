@@ -11,7 +11,7 @@ h1{
 /* \\\\Cabeçalho\\\\ */
 
 .cabeçalho{
-    display:inline-block;
+    display:flex;
     justify-content: space-between;
     background: rgb(181, 132, 204);
     align-items: center;
@@ -21,47 +21,52 @@ h1{
 .menu {
     display: flex;
     align-items: center;
-    justify-content: flex-end; 
+    justify-content: space-between; 
     padding: 20px 40px;
     width: 100%;
     box-sizing: border-box;
 }
 
-.menu h1 {
-    position: absolute; 
-    left: 50%;
-    transform: translateX(-50%); 
-    margin: 0;
-    text-align: center;
-}
-
-
-.menu .submenu {
-    margin: 0;
-}
-
-.menu .submenu ul {
-    list-style: none;
-}
-
-.submenu nav {
+.menu .nome{
+    text-align: left;
     display: flex;
-    justify-content: space-between; 
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+
+
+
+.menu .submenu-cima {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.menu .submenu-cima ul {
+    list-style: none;
+    
+}
+
+.submenu-cima nav {
+    display: flex;
+    justify-content: flex-end; 
     align-items: center; 
     padding: 40px; 
 }
 
-.submenu ul{
+.submenu-cima ul{
     display: flex;
     justify-content: flex-start;
     list-style-type: none;
     margin: 20px;
     padding: 0;
-    gap: 10px
+    gap: 30px
 }
    
-.submenu ul li {
+.submenu-cima ul li {
     margin-right: 10px;
+    font-size: 1vw;
 }
 
 /* \\\\Body cadastro e login\\\\ */
@@ -106,10 +111,16 @@ h1{
 } 
 
 .produtos { 
-    display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start; 
+   
+
 }
 
+.produtos ul{
+    list-style-type: none; 
+
+}
 
 #foto {
     font-size: 20px;
@@ -121,7 +132,6 @@ h1{
     height: 250px; 
     border-radius: 8px;
     margin: 0;     
-    padding: 20px;
     text-align: center;
     box-sizing: border-box;
 }
@@ -185,3 +195,10 @@ h1{
 
 /* \\\\Detalhes\\\\ */
 
+button{
+    border-radius: 5px;
+    width: 80px;
+    background-color: rgb(181, 132, 204);
+}
+    
+img{border-radius: 50px;}
