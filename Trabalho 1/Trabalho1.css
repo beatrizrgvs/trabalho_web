@@ -1,3 +1,14 @@
+/* \\\\Gerais\\\\ */
+
+body{
+    background-color: rgb(241, 225, 255);
+}
+
+h1{
+    text-align: center;
+}
+
+/* \\\\Cabeçalho\\\\ */
 
 .cabeçalho{
     display:inline-block;
@@ -53,9 +64,7 @@
     margin-right: 10px;
 }
 
-body{
-    background-color: rgb(241, 225, 255);
-}
+/* \\\\Body cadastro e login\\\\ */
 
 .login-cadastro-body{ 
     display: flex;
@@ -74,6 +83,8 @@ body{
     margin-top: 10%;
     
 }
+
+/* \\\\Produtos\\\\ */
 
 .todososprodutos {
     display: flex;
@@ -115,13 +126,13 @@ body{
     box-sizing: border-box;
 }
     
+/* \\\\Busca\\\\ */
+
 #busca {
     border-radius: 5px;
 }
 
-h1{
-    text-align: center;
-}
+/* \\\\Carrinho\\\\ */
 
 .item{
     display: flex;
@@ -133,3 +144,44 @@ h1{
     padding-left: 20px;
     list-style-type: none;
 }
+
+/* \\\\Produtos em detalhes\\\\ */
+
+.produto_detalhes{
+    display: flex;
+    justify-content: flex-start; 
+}
+
+.produto_detalhes ul{
+    margin-top: 0px;
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.produto_detalhes li{
+   margin-bottom: 5px;
+   font-size: 20px;
+}
+
+#produto_nome_detalhes{
+
+    font-size: 40px;
+    padding-bottom: 20px;
+}
+
+/* \\\\Avaliações\\\\ */
+
+.avaliacoes ul{
+
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.avaliacoes li{
+
+   margin-bottom: 10px;
+
+}
+
+/* \\\\Detalhes\\\\ */
+
