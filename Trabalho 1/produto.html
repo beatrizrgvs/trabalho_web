@@ -9,21 +9,62 @@
 
 <header class="cabeçalho">
     <div  class="menu">
-        <h1>Open book alpha</h1>
-    </div>
-        <div class="submenu">
-            
+       <div class="nome">
+    <img src="67.jpg" alt="logo" width="100px" >
+      <h1 id="nome">Open Book alpha67</h1>
+      </div>
+
+          <div class="submenu-cima">
+
             <nav>
-
+                
                 <ul>
-                    <li><a href="index.html"> Inicio</a></li>
-                    <li><a href="login.html"> Login</a></li>
-                    <li><a href="cadastro.html"> Cadastro</a></li>
-                    <li><a href="carrinho.html"> Carrinho</a></li>
-                </ul>
 
-            </nav>
-        </div>
+                    <form action="index.html" method="post">
+                    <div class="button">
+                    <button type="submit"> Início </button>       
+                    </div>
+                    </form>
+
+
+                    <form action="login.html" method="post">
+                    <div class="button">
+                    <button type="submit"> Login </button>       
+                    </div>
+            
+                    </form>
+
+                    <form action="cadastro.html" method="post">
+                    <div class="button">
+                    <button type="submit"> Cadastro </button>       
+                    </div>
+            
+                    </form>
+
+                    <form action="carrinho.html" method="post">
+                    <div class="button">
+                    <button type="submit"> Carrinho </button>       
+                    </div>
+            
+                    </form>
+
+                    </ul>
+
+                </nav>                      
+
+            
+
+            <ul>
+                <li>
+                    <form id = "busca">
+                        <input type="search" id="busca" name="q" placeholder="Pesquisar...">
+                        <button type="submit">Buscar</button>
+                    </form>
+
+                </li>
+
+            </ul>
+      </div>
     
 </header>
 
@@ -33,52 +74,88 @@
 
     <div class="produto_detalhes">
                 
-        <p id="foto">livro 1</p>
+        <img id="foto_detalhes" src=it.jpg alt="hahahahaha">
 
         <ul>
             <li id="produto_nome_detalhes"> nome do livro </li> 
 
-            <li  id="produto_preco_detalhes"> preço a vista </li>
+            <li> Preço à vista: R$ 250,00 </li>
 
-
-            <li id="produto_preco_detalhes"> preço parcelado  </li>
+            <li><label for="precop">Preço parcelado (até 5 vezes):</label>  
+                
+            <select name="parcelamentos">
+                <option value="uma_p"> 1x: R$ 330,00</option>
+                <option value="duas_p"> 2x: R$ 165,00 </option>
+                <option value="tres_p"> 3x: R$ 110,00 </option>
+                <option value="quatro_p"> 4x: R$ 82,50 </option>
+                <option value="cinco_p"> 5x: R$ 66,00  </option>
+            </select></li>
 
             <li id="produto_prazo"><label for="prazo">Prazo de entrega: </label>
             <input type="date" value="2026-04-15" readonly></li>
 
-            <li  id="produto_qnt_detalhes"><label for="qnt">Quantidade:</label>
+            <li id="produto_qnt"><label for="qnt">Quantidade:</label>
             <input type="number" id="qnt" name="qnt" min="1" max="10" step="1"></li>
 
-            <li  id="produto_formas_pagar">formas de pagamento</li>
+            <li><label for="pagar">Formas de pagamento:</label>
+
+            <select name="pagamentos">
+                <option value="cartao_Visa">Cartão de crédito Visa</option>
+                <option value="cartao_Mastercard">Cartão de crédito Mastercard</option>
+                <option value="cartao_debito">Cartão de débito</option>
+                <option value="pix">Pix</option>
+                <option value="boleto_bancario">Boleto bancário</option>
+            </select></li>
+
         </ul>
 
     </div>
 
-    <p>Descrição e detalhes do produto</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem tempora dolorem est impedit cupiditate consequuntur ex vitae adipisci a doloremque, quibusdam possimus et aliquid minima eaque, saepe iusto! Praesentium, aperiam.</p>
+    <p id="descricao">Descrição e detalhes do produto</p>
+    <p id="descricao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem tempora dolorem est impedit cupiditate consequuntur ex vitae adipisci a doloremque, quibusdam possimus et aliquid minima eaque, saepe iusto! Praesentium, aperiam.</p>
 
-    <table class="detalhes">
+    <table border="1" class="tabela_detalhes">
 
         <tr>
 
             <th>Editora:</th>
-            <th>Ano:</th>
-            <th>ISBN:</th>
-            <th>Gênero:</th>
-            <th>Numero de paginas:</th>
-            <th>Estilo de capa:</th>
+            <td>Editora X</td>
 
         </tr>
 
         <tr>
 
-            <td>Editora X</td>
+            <th>Ano:</th>
             <td>2008</td>
-            <td>1234</td>
-            <td>Romance</td>
-            <td>67</td>
-            <td>Dura</td>
 
+        </tr>
+
+        <tr>
+
+            <th>ISBN:</th>
+            <td>1234</td>
+            
+        </tr>
+
+        <tr>
+
+            <th>Gênero:</th>
+            <td>romance</td>
+            
+        </tr>
+
+        <tr>
+
+            <th>Numero de paginas:</th>
+            <td>67</td>
+            
+        </tr>
+
+        <tr>
+
+            <th>Estilo de capa:</th>
+            <td>dura</td>
+            
         </tr>
 
     </table>
@@ -86,13 +163,26 @@
     <div class="avaliacoes">
 
         <ul>
-
+            <li id="data_ava"><label for="data_ava"> Data da avaliação: </label>
+            <input type="date" value="2026-04-15" readonly></li>
+            <li>estrelinhas</li>
             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-
         </ul>
+
+        <ul>
+            <li id="data_ava"><label for="data_ava"> Data da avaliação: </label>
+            <input type="date" value="2026-04-15" readonly></li>
+            <li>estrelinhas</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
+        </ul>
+
+        <ul>
+            <li id="data_ava"><label for="data_ava"> Data da avaliação: </label>
+            <input type="date" value="2026-04-15" readonly></li>
+            <li>estrelinhas</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
+        </ul>
+
 
     </div>
 
