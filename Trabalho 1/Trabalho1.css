@@ -121,7 +121,6 @@ input[type="number"]{
 
 .produtos ul{
     list-style-type: none; 
-
 }
 
 #foto {
@@ -190,7 +189,6 @@ input[type="number"]{
 }
 
 #produto_nome_detalhes{
-
     font-size: 40px;
     padding-bottom: 20px;
 }
@@ -198,15 +196,12 @@ input[type="number"]{
 /* \\\\Avaliações\\\\ */
 
 .avaliacoes ul{
-
     list-style-type: none;
     padding-left: 20px;
 }
 
 .avaliacoes li{
-
    margin-bottom: 10px;
-
 }
 
 /* \\\\Detalhes e descriçao\\\\ */
