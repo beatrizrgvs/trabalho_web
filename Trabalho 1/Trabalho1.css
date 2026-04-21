@@ -1,7 +1,7 @@
 /* \\\\Gerais\\\\ */
 
 body{
-    background-color: rgb(241, 225, 255);
+    background-color:rgb(252, 233, 199);
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -29,12 +29,19 @@ select{
     border-radius: 10px;
 }
 
+#titulo_pagina{
+    font-family: "Felipa", serif;
+    font-weight: 400;
+    font-size: 40px;
+    font-style: normal;
+}
+
 /* \\\\Cabeçalho\\\\ */
 
 .cabeçalho{
     display:flex;
     justify-content: space-between;
-    background: rgb(181, 132, 204);
+    background:rgb(99, 14, 14);
     align-items: center;
     width: 100%;
 }
@@ -55,8 +62,33 @@ select{
     justify-content: flex-start; 
     font-family: "Felipa", serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 25px;
     font-style: normal;
+    color:rgb(252, 233, 199);
+}
+
+#nome{
+    padding-left: 10px;
+}
+
+.submenu-cima a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgb(252, 233, 199);
+    color: rgb(99, 14, 14);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.submenu-cima a:hover {
+    background-color: rgb(220, 200, 170);
+    transform: scale(1.05);
+}
+
+.submenu-cima a:active {
+    transform: scale(0.95);
 }
 
 .menu .submenu-cima {
@@ -98,16 +130,16 @@ select{
     align-items: center;
 }
 .login-cadastro{
+    color:rgb(252, 233, 199);
     font-size: 20px;
     display: flex;
     justify-content: center; 
-    background-color:rgb(181, 132, 204);
+    background-color:rgb(99, 14, 14);
     padding: 90px;
     border-radius: 8px;
     width: 100%;
     max-width: 400px;
     margin-top: 10%;
-    
 }
 
 /* \\\\Produtos\\\\ */
@@ -115,10 +147,10 @@ select{
 .todososprodutos {
     display: flex;
     justify-content: center; 
-    background-color: rgb(74, 47, 87);
+    background-color:rgb(99, 14, 14);
     width: 100%;
     min-height: 400px;
-    padding: 60px 0; /
+    padding: 60px 0; 
 }
 
 
@@ -160,10 +192,28 @@ select{
     border-radius: 10px;
 }
 
+.caixa-busca {
+    position: relative; 
+    display: flex;
+  }
+
+.caixa-busca i {
+    position: absolute; 
+    left: 12px;      
+    top: 50%;          
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none; 
+  }
+
+.caixa-busca input {
+    padding-left: 35px; 
+    margin-right:10px;
+  }
+
 /* \\\\Carrinho\\\\ */
 
 #produto_nome_carrinho{
-
     font-size: 20px;
     padding-bottom: 10px;
 }
@@ -173,13 +223,17 @@ select{
     align-items: center;
     justify-content: flex-start; 
     padding-bottom: 10px;
-    
+    padding-left: 10px;
+    padding-top: 10px;
+    background-color: rgb(100, 33, 33);
+    border: 10px rgb(252, 233, 199);
+    border-style: solid;
 }
-
 
 .item ul{
     padding-left: 20px;
     list-style-type: none;
+    color:rgb(252, 233, 199);
 }
 
 /* \\\\Produtos em detalhes\\\\ */
@@ -187,7 +241,9 @@ select{
 .produto_detalhes{
     display: flex;
     justify-content: flex-start; 
-    background-color: rgb(181, 132, 204);
+    background-color: rgb(100, 33, 33);
+    padding-top: 10px;
+    padding-left: 10px;
 
 }
 
@@ -212,18 +268,26 @@ select{
 .avaliacoes ul{
     list-style-type: none;
     padding-left: 20px;
-    background-color: rgb(181, 132, 204);
+    border: 5px rgb(100, 33, 33);
+    border-style: solid;
 }
 
 .avaliacoes li{
    margin-bottom: 10px;
 }
 
+#descricao_avaliacao{
+    background-color: rgb(99, 14, 14);
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    color: rgb(252, 233, 199);
+}
 /* \\\\Detalhes e descriçao\\\\ */
 
 .tabela_detalhes{
     border-style: dashed;
-    background-color: rgb(181, 132, 204, 0.5);
+    background-color: rgb(100, 33, 33);
 
 }
 
@@ -231,28 +295,15 @@ select{
     font-size: 20px;
 }
 
+/* \\\\Botoes\\\\ */
+
 button{
     border-radius: 10px;
-    border-color: rgb(74, 47, 87, 0.5);
+    border-color:rgb(100, 33, 33);
     width: 80px;
-    background-color: rgb(181, 132, 204);
+    background-color: rgb(252, 233, 199);
 }
     
-img{border-radius: 50px;}
-
-
-.rodapé-final {
-    display: flex;
-    justify-content: center; 
-    align-items: center;    
-    border-top: 1px solid #ccc; 
-    margin-top: 50px;
-    padding: 20px 40px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-
 .botao-invisivel {
     background: none;
     border: none;
@@ -270,12 +321,101 @@ img{border-radius: 50px;}
 .botao-invisivel ul {
     list-style-type: none;
     padding: 0;
+    width: 190px;
     margin-top: 10px;
-    background-color: rgb(181, 132, 204, 0.5);
-    border-radius: 5px ;
+    background-color:rgb(100, 33, 33);
+    border-radius: 5px;
     font-size: 20px;
+    height: 140px;
+    
+}
+
+.botao-invisivel li{
+    padding-bottom: 20px;
+    color:rgb(252, 233, 199);
+    
 }
 
 .botao-invisivel:hover{
     transform: scale(1.05);
+}
+
+#botao_carrinho{
+    display: flex;
+    justify-content: center;
+}
+
+#botao_carrinho button{
+    width: 200px;
+    height: 100px;
+    font-size: 30px;
+}
+
+#botao_comprar{
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#botao_comprar button{
+    width:200px
+}
+
+img{
+    border-radius: 50px;
+}
+
+/* \\\\Rodape\\\\ */
+
+.rodapé-final {
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    border-top: 1px solid #ccc; 
+    margin-top:30px;
+    padding: 20px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color:rgb(99, 14, 14);
+    font-style:oblique;
+    font-weight: bold;
+}
+
+/* \\\\Filtro\\\\ */
+
+.container-colunas {
+    display: flex;      
+    gap: 20px;   
+    background-color:rgb(99, 14, 14);
+    padding: 20px;
+  }
+
+.coluna {
+    background-color: rgb(252, 233, 199);
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+.coluna ul{
+    padding-left: 10px;
+    padding-right: 40px;
+}
+
+.coluna li{
+    padding-bottom: 10px;
+}
+
+.layout-principal {
+    display: flex;         
+    gap: 20px;         
+    width: 100%;
+}
+
+.resto-pagina{
+    flex:1;
+}
+
+.infos{
+    width:190px;
 }

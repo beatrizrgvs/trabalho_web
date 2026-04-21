@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="Trabalho1.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Carrinho</title>
 </head>
 <header class="cabeçalho">
     <div  class="menu">
         <div class="nome">
-    <img src="67.jpg" alt="logo" width="100px" >
+    <img src="logo.jpg" alt="logo" width="100px" >
       <h1 id="nome">Open Book</h1>
       </div>
 
@@ -59,8 +60,11 @@
             <ul>
                 <li>
                     <form id = "busca">
-                        <input type="search" id="busca" name="q" placeholder="Pesquisar...">
-                        <button type="submit">Buscar</button>
+                        <div class="caixa-busca">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="search" id="busca" name="q" placeholder="Pesquisar..." >
+                        <button type="submit">Buscar </i></button>
+                        </div>
                     </form>
 
                 </li>
@@ -70,7 +74,7 @@
     
 </header>
 <body>
-    <h1>Carrinho</h1>
+    <h1 id="titulo_pagina">Carrinho</h1>
 
  <div class="todos_itens_carrinho">
         <div class="organizacao_itens">
@@ -145,6 +149,9 @@
         </div>
     </div>
 
+    <div class="button"  id="botao_carrinho">
+        <button type="submit"> Comprar </button>
+    </div>
 
 </body>
 <footer>

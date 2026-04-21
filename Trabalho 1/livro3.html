@@ -13,7 +13,7 @@
 <header class="cabeçalho">
     <div  class="menu">
        <div class="nome">
-    <img src="67.jpg" alt="logo" width="100px" >
+    <img src="logo.jpg" alt="logo" width="100px" >
       <h1 id="nome">Open Book</h1>
       </div>
 
@@ -60,10 +60,12 @@
             <ul>
                 <li>
                     <form id = "busca">
-                        <input type="search" id="busca" name="q" placeholder="Pesquisar...">
-                        <button type="submit">Buscar</button>
+                        <div class="caixa-busca">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="search" id="busca" name="q" placeholder="Pesquisar..." >
+                        <button type="submit">Buscar </i></button>
+                        </div>
                     </form>
-
                 </li>
 
             </ul>
@@ -73,7 +75,7 @@
 
 <body>
 
-    <h1>Detalhes do produto</h1>
+    <h1 id="titulo_pagina">Detalhes do livro</h1>
 
     <div class="produto_detalhes">
                 
@@ -102,20 +104,24 @@
 
             <li><label for="pagar">Formas de pagamento:</label>
 
-            <select name="pagamentos">
-                <option value="cartao_Visa">Cartão de crédito Visa</option>
-                <option value="cartao_Mastercard">Cartão de crédito Mastercard</option>
-                <option value="cartao_debito">Cartão de débito</option>
-                <option value="pix">Pix</option>
-                <option value="boleto_bancario">Boleto bancário</option>
-            </select></li>
-
+            <li>
+                <select name="pagamentos">
+                    <option value="cartao_Visa">Cartão de crédito Visa</option>
+                    <option value="cartao_Mastercard">Cartão de crédito Mastercard</option>
+                    <option value="cartao_debito">Cartão de débito</option>
+                    <option value="pix">Pix</option>
+                    <option value="boleto_bancario">Boleto bancário</option>
+                </select>
+            </li>
         </ul>
-
     </div>
 
+    <div class="button" id="botao_comprar">
+        <button type="submit"> Adicionar ao carrinho </button>
+    </div>
+    
     <p id="descricao_avaliacao">Descrição e detalhes do produto</p>
-    <p id="descricao_avaliacao"> Winston Smith, número 6079, ocupa uma função comum no Departamento de Documentação: “retificar” fatos de acordo com as orientações do Ministério da Verdade. E ele não mede esforços em seu objetivo de erradicar, em todos os níveis, quaisquer elementos que ameacem sua existência. A individualidade, o livre-arbítrio, o pensamento crítico, o amor – todos considerados transgressões inadmissíveis – são punidos com o máximo de rigor e severidade. Nada escapa aos olhos do Grande Irmão, o grande líder do regime, e é por meio de sua vigilância intensiva, cujos “olhos eram capazes de o seguir (…) em moedas, estampas, capas de livros, bandeiras, pôsteres e invólucros de pacotes de cigarro”, que o regime se certifica milimetricamente da soberania de seu poder. Por outro lado, Winston se sente ávido por conhecer algum tipo de liberdade. Assim, pouco a pouco avança em seus atos de resistência em busca de reavivar sua humanidade, obliterada por décadas da repressão política incidente no mais profundo nível de seus pensamentos e lembranças. Entretanto, para realizar seu desejo ele precisará desviar cuidadosamente de um perigoso campo minado sob o escrutínio do Partido e do Grande Irmão. </p>
+    <p> Winston Smith, número 6079, ocupa uma função comum no Departamento de Documentação: “retificar” fatos de acordo com as orientações do Ministério da Verdade. E ele não mede esforços em seu objetivo de erradicar, em todos os níveis, quaisquer elementos que ameacem sua existência. A individualidade, o livre-arbítrio, o pensamento crítico, o amor – todos considerados transgressões inadmissíveis – são punidos com o máximo de rigor e severidade. Nada escapa aos olhos do Grande Irmão, o grande líder do regime, e é por meio de sua vigilância intensiva, cujos “olhos eram capazes de o seguir (…) em moedas, estampas, capas de livros, bandeiras, pôsteres e invólucros de pacotes de cigarro”, que o regime se certifica milimetricamente da soberania de seu poder. Por outro lado, Winston se sente ávido por conhecer algum tipo de liberdade. Assim, pouco a pouco avança em seus atos de resistência em busca de reavivar sua humanidade, obliterada por décadas da repressão política incidente no mais profundo nível de seus pensamentos e lembranças. Entretanto, para realizar seu desejo ele precisará desviar cuidadosamente de um perigoso campo minado sob o escrutínio do Partido e do Grande Irmão. </p>
 
     <table border="1" class="tabela_detalhes">
 
