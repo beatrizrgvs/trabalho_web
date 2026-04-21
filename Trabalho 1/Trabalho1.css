@@ -2,6 +2,11 @@
 
 body{
     background-color: rgb(241, 225, 255);
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
 }
 
 h1{
@@ -14,6 +19,14 @@ input[type="date"]{
 
 input[type="number"]{
     width: 25px;
+}
+
+input{
+    border-radius: 10px;
+}
+
+select{
+    border-radius: 10px;
 }
 
 /* \\\\Cabeçalho\\\\ */
@@ -40,6 +53,10 @@ input[type="number"]{
     display: flex;
     align-items: center;
     justify-content: flex-start; 
+    font-family: "Felipa", serif;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: normal;
 }
 
 .menu .submenu-cima {
@@ -140,16 +157,10 @@ input[type="number"]{
 /* \\\\Busca\\\\ */
 
 #busca {
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* \\\\Carrinho\\\\ */
-
-#foto_carrinho{
-
-    width: 200px;
-    height: 200px;
-}
 
 #produto_nome_carrinho{
 
@@ -162,6 +173,7 @@ input[type="number"]{
     align-items: center;
     justify-content: flex-start; 
     padding-bottom: 10px;
+    
 }
 
 
@@ -175,6 +187,8 @@ input[type="number"]{
 .produto_detalhes{
     display: flex;
     justify-content: flex-start; 
+    background-color: rgb(181, 132, 204);
+
 }
 
 .produto_detalhes ul{
@@ -198,6 +212,7 @@ input[type="number"]{
 .avaliacoes ul{
     list-style-type: none;
     padding-left: 20px;
+    background-color: rgb(181, 132, 204);
 }
 
 .avaliacoes li{
@@ -206,23 +221,61 @@ input[type="number"]{
 
 /* \\\\Detalhes e descriçao\\\\ */
 
-#foto_detalhes{
-    width: 200px;
-    height: 200px;
-}
-
 .tabela_detalhes{
     border-style: dashed;
+    background-color: rgb(181, 132, 204, 0.5);
+
 }
 
-#descricao{
+#descricao_avaliacao{
     font-size: 20px;
 }
 
 button{
-    border-radius: 5px;
+    border-radius: 10px;
+    border-color: rgb(74, 47, 87, 0.5);
     width: 80px;
     background-color: rgb(181, 132, 204);
 }
     
 img{border-radius: 50px;}
+
+
+.rodapé-final {
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    border-top: 1px solid #ccc; 
+    margin-top: 50px;
+    padding: 20px 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.botao-invisivel {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    text-align: inherit;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botao-invisivel ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    background-color: rgb(181, 132, 204, 0.5);
+    border-radius: 5px ;
+    font-size: 20px;
+}
+
+.botao-invisivel:hover{
+    transform: scale(1.05);
+}
