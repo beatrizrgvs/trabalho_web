@@ -3,10 +3,7 @@
 body{
     background-color:rgb(252, 233, 199);
     font-family: "Roboto", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-variation-settings:
-    "wdth" 100;
+    margin: 0;
 }
 
 h1{
@@ -31,28 +28,28 @@ select{
 
 #titulo_pagina{
     font-family: "Felipa", serif;
-    font-weight: 400;
     font-size: 40px;
-    font-style: normal;
 }
 
 /* \\\\Cabeçalho\\\\ */
 
-.cabeçalho{
-    display:flex;
-    justify-content: space-between;
-    background:rgb(99, 14, 14);
-    align-items: center;
-    width: 100%;
+#logo {
+    width: 100px;
 }
 
 .menu {
     display: flex;
-    align-items: center;
     justify-content: space-between; 
+    align-items: center;
     padding: 20px 40px;
-    width: 100%;
-    box-sizing: border-box;
+    background:rgb(99, 14, 14);
+}
+
+.nome{
+    display: flex;
+    align-items: center;
+    color:rgb(252, 233, 199);
+    font-family: "Felipa", serif;
 }
 
 .menu .nome{
@@ -68,7 +65,7 @@ select{
 }
 
 #nome{
-    padding-left: 10px;
+    margin-left: 10px;
 }
 
 .submenu-cima a {
@@ -153,15 +150,26 @@ select{
     padding: 60px 0; 
 }
 
+.produto {
+    display: block;
+    text-decoration: none;
+    color: black;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
 
-.produtinhos { 
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;         
-    gap: 30px;               
-    width: 100%;             
-    max-width: 1200px;       
-} 
+.produto:hover {
+    transform: scale(1.05);
+}
+
+.produtinhos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
 
 .produtos { 
     align-items: center;
@@ -172,7 +180,7 @@ select{
     list-style-type: none; 
 }
 
-#foto {
+.foto {
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -189,7 +197,14 @@ select{
 /* \\\\Busca\\\\ */
 
 #busca {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgb(252, 233, 199);
+    color: rgb(99, 14, 14);
     border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
 }
 
 .caixa-busca {
@@ -199,7 +214,7 @@ select{
 
 .caixa-busca i {
     position: absolute; 
-    left: 12px;      
+    left: 200px;      
     top: 50%;          
     transform: translateY(-50%);
     color: #888;
@@ -213,8 +228,8 @@ select{
 
 /* \\\\Carrinho\\\\ */
 
-#produto_nome_carrinho{
-    font-size: 20px;
+.produto_nome_carrinho{
+    font-size: 40px;
     padding-bottom: 10px;
 }
 
@@ -244,6 +259,7 @@ select{
     background-color: rgb(100, 33, 33);
     padding-top: 10px;
     padding-left: 10px;
+    padding-bottom: 10px;
 
 }
 
@@ -261,6 +277,7 @@ select{
 #produto_nome_detalhes{
     font-size: 40px;
     padding-bottom: 20px;
+    color: rgb(252, 233, 199);
 }
 
 /* \\\\Avaliações\\\\ */
@@ -276,7 +293,7 @@ select{
    margin-bottom: 10px;
 }
 
-#descricao_avaliacao{
+.descricao_avaliacao{
     background-color: rgb(99, 14, 14);
     width: 300px;
     display: flex;
@@ -286,22 +303,42 @@ select{
 /* \\\\Detalhes e descriçao\\\\ */
 
 .tabela_detalhes{
+    margin-left: 10px;
+    border: 5px;
+    border-color: rgb(99, 14, 14) ;
     border-style: dashed;
-    background-color: rgb(100, 33, 33);
-
+    background-color:rgb(100, 33, 33);
 }
 
-#descricao_avaliacao{
+.descricao_avaliacao{
+    margin-left: 10px;
     font-size: 20px;
+}
+
+.descricao_texto{
+    margin-left: 10px;
 }
 
 /* \\\\Botoes\\\\ */
 
 button{
-    border-radius: 10px;
-    border-color:rgb(100, 33, 33);
-    width: 80px;
+    display: inline-block;
+    padding: 8px 16px;
     background-color: rgb(252, 233, 199);
+    color: rgb(99, 14, 14);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: rgb(220, 200, 170);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
 }
     
 .botao-invisivel {
@@ -340,12 +377,12 @@ button{
     transform: scale(1.05);
 }
 
-#botao_carrinho{
+.botao_carrinho{
     display: flex;
     justify-content: center;
 }
 
-#botao_carrinho button{
+.botao_carrinho button{
     width: 200px;
     height: 100px;
     font-size: 30px;
@@ -367,7 +404,7 @@ img{
 
 /* \\\\Rodape\\\\ */
 
-.rodapé-final {
+.rodape-final {
     display: flex;
     justify-content: center; 
     align-items: center;    

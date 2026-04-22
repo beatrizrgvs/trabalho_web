@@ -11,72 +11,39 @@
     <title>Cadastro</title>
 </head>
 
-<header class="cabeçalho">
-    <div  class="menu">
+<body>
 
-    <div class="nome">
-    <img src="logo.jpg" alt="logo" width="100px" >
-      <h1 id="nome">Open Book</h1>
-      </div>
+<header>
+    <div class="menu">
 
-          <div class="submenu-cima">
-            
+        <div class="nome">
+            <img src="logo.jpg" alt="logo" id="logo">
+            <h1 id="nome">Open Book</h1>
+        </div>
+
+        <div class="submenu-cima">
+
             <nav>
-                
                 <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                </ul>
+            </nav>
 
-                    <form action="index.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Início </button>       
-                    </div>
-                    </form>
+            <form>
+                <div class="caixa-busca">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="busca" name="q" placeholder="Pesquisar...">
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
 
-
-                    <form action="login.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Login </button>       
-                    </div>
-            
-                    </form>
-
-                    <form action="cadastro.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Cadastro </button>       
-                    </div>
-            
-                    </form>
-
-                    <form action="carrinho.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Carrinho </button>       
-                    </div>
-            
-                    </form>
-
-                    </ul>
-
-                </nav>                      
-
-            
-
-            <ul>
-                <li>
-                    <form id = "busca">
-                        <div class="caixa-busca">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="search" id="busca" name="q" placeholder="Pesquisar..." >
-                        <button type="submit">Buscar </i></button>
-                        </div>
-                    </form>
-
-                </li>
-
-            </ul>
-      </div>
-      
+        </div>
+    </div>
 </header>
 
-<body>
     <div class="login-cadastro-body">
 
     <div class="login-cadastro">
@@ -97,7 +64,7 @@
 
             <div>
                 <label for="senha"> Senha: </label><br>
-                <input type="text" id="name" required>
+                <input type="text" id="senha" required>
             </div>
 
             <div>
@@ -124,16 +91,16 @@
     </div>
     </div>
 
-</body>
 <footer>
-
-    <div  class="rodapé-final">
-
-        <p>&copy; <span id="current-year"></span>OpenBook</p>
-                           
+    <div class="rodape-final">
+        <p>&copy; <span id="current-year"></span> OpenBook</p>
     </div>
-            
-            
-      
 </footer>
+
+<script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
+        
+</body>
+
 </html>

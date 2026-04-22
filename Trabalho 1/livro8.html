@@ -11,203 +11,178 @@
     <title>Dom Quixote</title>
 </head>
 
-<header class="cabeçalho">
-    <div  class="menu">
-       <div class="nome">
-    <img src="logo.jpg" alt="logo" width="100px" >
-      <h1 id="nome">Open Book</h1>
-      </div>
-
-          <div class="submenu-cima">
-            
-            <nav>
-                
-                <ul>
-
-                    <form action="index.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Início </button>       
-                    </div>
-                    </form>
-
-
-                    <form action="login.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Login </button>       
-                    </div>
-            
-                    </form>
-
-                    <form action="cadastro.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Cadastro </button>       
-                    </div>
-            
-                    </form>
-
-                    <form action="carrinho.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Carrinho </button>       
-                    </div>
-            
-                    </form>
-
-                    </ul>
-
-                </nav>                      
-
-            
-
-            <ul>
-                <li>
-                    <form id = "busca">
-                        <div class="caixa-busca">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="search" id="busca" name="q" placeholder="Pesquisar..." >
-                        <button type="submit">Buscar </i></button>
-                        </div>
-                    </form>
-
-                </li>
-
-            </ul>
-      </div>
-    
-</header>
-
 <body>
+<header>
+    <div class="menu">
 
-    <h1 id="titulo_pagina">Detalhes do livro</h1>
+        <div class="nome">
+            <img src="logo.jpg" alt="logo" id="logo">
+            <h1 id="nome">Open Book</h1>
+        </div>
 
-    <div class="produto_detalhes">
-                
-        <img id="foto" src=domQuixote.jpg alt="Dom Quixote">
+        <div class="submenu-cima">
 
-        <ul>
-            <li id="produto_nome_detalhes"> Dom Quixote </li> 
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                </ul>
+            </nav>
 
-            <li> Preço à vista: R$ 59,90 </li>
+            <form>
+                <div class="caixa-busca">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="busca" name="q" placeholder="Pesquisar...">
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
 
-            <li><label for="precop">Preço parcelado (até 5 vezes):</label>  
-                
-            <select name="parcelamentos">
-                <option value="uma_p"> 1x: R$ XX,XX</option>
-                <option value="duas_p"> 2x: R$ XX,XX </option>
-                <option value="tres_p"> 3x: R$ XX,XX </option>
-                <option value="quatro_p"> 4x: R$ XX,XX </option>
-                <option value="cinco_p"> 5x: R$ XX,XX  </option>
-            </select></li>
-
-            <li id="produto_prazo"><label for="prazo">Prazo de entrega: </label>
-            <input type="date" value="2026-04-15" readonly></li>
-
-            <li id="produto_qnt"><label for="qnt">Quantidade:</label>
-            <input type="number" id="qnt" name="qnt" min="1" max="10" step="1"></li>
-
-            <li><label for="pagar">Formas de pagamento:</label>
-
-            <li>
-                <select name="pagamentos">
-                    <option value="cartao_Visa">Cartão de crédito Visa</option>
-                    <option value="cartao_Mastercard">Cartão de crédito Mastercard</option>
-                    <option value="cartao_debito">Cartão de débito</option>
-                    <option value="pix">Pix</option>
-                    <option value="boleto_bancario">Boleto bancário</option>
-                </select>
-            </li>
-        </ul>
+        </div>
     </div>
+</header>
+<h1 id="titulo_pagina">Detalhes do livro</h1>
 
-    <div class="button" id="botao_comprar">
-        <button type="submit"> Adicionar ao carrinho </button>
+<div class="produto_detalhes">
+            
+    <img class="foto" src=domQuixote.jpg alt="Dom Quixote">
+
+    <ul>
+        <li id="produto_nome_detalhes"> Dom Quixote </li> 
+
+        <li> Preço à vista: R$ 59,90 </li>
+
+        <li>
+            <label for="parcelas">Preço parcelado (até 5 vezes):</label>
+            <select id="parcelas" name="parcelamentos">
+                <option value="1">1x: R$ XX,XX</option>
+                <option value="2">2x: R$ XX,XX</option>
+                <option value="3">3x: R$ XX,XX</option>
+                <option value="4">4x: R$ XX,XX</option>
+                <option value="5">5x: R$ XX,XX</option>
+            </select>
+        </li>
+
+        <li>
+            <label for="prazo">Prazo de entrega:</label>
+            <input id="prazo" type="date" value="2026-04-15" readonly>
+        </li>
+
+        <li>
+            <label for="qnt">Quantidade:</label>
+            <input id="qnt" type="number" name="qnt" min="1" max="10" step="1">
+        </li>
+
+        <li>
+            <label for="pagamento">Formas de pagamento:</label>
+            <select id="pagamento" name="pagamentos">
+                <option value="visa">Cartão de crédito Visa</option>
+                <option value="mastercard">Cartão de crédito Mastercard</option>
+                <option value="debito">Cartão de débito</option>
+                <option value="pix">Pix</option>
+                <option value="boleto">Boleto bancário</option>
+            </select>
+        </li>
+    </ul>
+</div>
+
+<div class="button" id="botao_comprar">
+    <button type="submit"> Adicionar ao carrinho </button>
+</div>
+
+<p class="descricao_avaliacao">Descrição e detalhes do produto</p>
+<p class="descricao_texto">De tanto ler antigos livros de cavalaria, o pacato Alonso Quijano perde o juízo e resolve levar a vida de um cavaleiro andante. Depois de equipar-se com a velha armadura herdada dos bisavós e de fazer-se ordenar por um estalajadeiro, transforma-se no mui afamado Dom Quixote de La Mancha. Na companhia do cavalo Rocinante e do fiel escudeiro Sancho Pança, sai mundo afora em busca de aventuras. Pelo caminho, o engenhoso fidalgo encontra uma caravana de beneditinos, uma procissão de penitentes e os famosos moinhos de vento - porém a sede de aventuras, agravada pela sandice, leva-o a ver bruxos, fantasmas e hordas de gigantes.</p>
+
+<table class="tabela_detalhes">
+
+    <tr>
+
+        <th>Editora:</th>
+        <td>L&PM</td>
+
+    </tr>
+
+    <tr>
+
+        <th>Ano da edição:</th>
+        <td>2007</td>
+
+    </tr>
+
+    <tr>
+
+        <th>ISBN:</th>
+        <td>8525433632</td>
+        
+    </tr>
+
+    <tr>
+
+        <th>Gênero:</th>
+        <td>Infanto juvenil</td>
+        
+    </tr>
+
+    <tr>
+
+        <th>Número de paginas:</th>
+        <td>64 páginas</td>
+        
+    </tr>
+
+    <tr>
+
+        <th>Estilo de capa:</th>
+        <td>Comum</td>
+        
+    </tr>
+
+</table>
+
+<p class="descricao_avaliacao">Avaliações</p>
+
+<div class="avaliacoes">
+
+    <ul>
+        <li class="data_ava">
+            <label>Data da avaliação:</label>
+            <input type="date" value="2025-04-15" readonly>
+        </li>
+        <li>⭐⭐⭐⭐⭐</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit...</li>
+    </ul>
+
+    <ul>
+        <li class="data_ava">
+            <label>Data da avaliação:</label>
+            <input type="date" value="2023-10-23" readonly>
+        </li>
+        <li>⭐⭐⭐</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit...</li>
+    </ul>
+
+    <ul>
+        <li class="data_ava">
+            <label>Data da avaliação:</label>
+            <input type="date" value="2024-01-21" readonly>
+        </li>
+        <li>⭐⭐⭐⭐</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit...</li>
+    </ul>
+
+</div>
+
+<footer>
+    <div class="rodape-final">
+        <p>&copy; <span id="current-year"></span> OpenBook</p>
     </div>
+</footer>
 
-    <p id="descricao_avaliacao">Descrição e detalhes do produto</p>
-    <p>De tanto ler antigos livros de cavalaria, o pacato Alonso Quijano perde o juízo e resolve levar a vida de um cavaleiro andante. Depois de equipar-se com a velha armadura herdada dos bisavós e de fazer-se ordenar por um estalajadeiro, transforma-se no mui afamado Dom Quixote de La Mancha. Na companhia do cavalo Rocinante e do fiel escudeiro Sancho Pança, sai mundo afora em busca de aventuras. Pelo caminho, o engenhoso fidalgo encontra uma caravana de beneditinos, uma procissão de penitentes e os famosos moinhos de vento - porém a sede de aventuras, agravada pela sandice, leva-o a ver bruxos, fantasmas e hordas de gigantes.</p>
-
-    <table border="1" class="tabela_detalhes">
-
-        <tr>
-
-            <th>Editora:</th>
-            <td>L&PM</td>
-
-        </tr>
-
-        <tr>
-
-            <th>Ano da edição:</th>
-            <td>2007</td>
-
-        </tr>
-
-        <tr>
-
-            <th>ISBN:</th>
-            <td>8525433632</td>
-            
-        </tr>
-
-        <tr>
-
-            <th>Gênero:</th>
-            <td>Infanto juvenil</td>
-            
-        </tr>
-
-        <tr>
-
-            <th>Número de paginas:</th>
-            <td>64 páginas</td>
-            
-        </tr>
-
-        <tr>
-
-            <th>Estilo de capa:</th>
-            <td>Comum</td>
-            
-        </tr>
-
-    </table>
-
-    <p id="descricao_avaliacao">Avaliações</p>
-
-    <div class="avaliacoes">
-
-        <ul>
-            <li id="data_ava"><label for="data_ava"> Data da avaliação: </label>
-            <input type="date" value="2025-04-15" readonly></li>
-            <li>⭐⭐⭐⭐⭐</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-        </ul>
-
-        <ul>
-            <li id="data_ava"><label for="data_ava"> Data da avaliação: </label>
-            <input type="date" value="2023-10-23" readonly></li>
-            <li>⭐⭐⭐</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-        </ul>
-
-        <ul>
-            <li id="data_ava"><label for="data_ava"> Data da avaliação: </label>
-            <input type="date" value="2024-01-21" readonly></li>
-            <li>⭐⭐⭐⭐</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-        </ul>
-
-    </div>
+<script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
 
 </body>
-<footer>
 
-    <div  class="rodapé-final">
-
-        <p>&copy; <span id="current-year"></span>OpenBook</p>
-                           
-    </div>
-            
-            
-      
-</footer>
 </html>

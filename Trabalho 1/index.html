@@ -1,207 +1,173 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="Trabalho1.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Open book</title>
+
+    <title>Open Book</title>
 </head>
 
 <body>
 
-    <header class="cabeçalho">
-    <div  class="menu">
+<header>
+    <div class="menu">
+
         <div class="nome">
-            <img src="logo.jpg" alt="logo" width="100px">
+            <img src="logo.jpg" alt="logo" id="logo">
             <h1 id="nome">Open Book</h1>
         </div>
 
-                <div class="submenu-cima">
-                    
-                    <nav>
-                        <ul>
-                            <li><a href="index.html">Início</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="cadastro.html">Cadastro</a></li>
-                            <li><a href="carrinho.html">Carrinho</a></li>
-                        </ul>
-                    </nav>                      
+        <div class="submenu-cima">
 
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                </ul>
+            </nav>
 
-                    <ul>
-                        <li>
-                            <form>
-                                <div class="caixa-busca">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                    <input type="search" id="busca" name="q" placeholder="Pesquisar..." >
-                                    <button type="submit">Buscar </button>
-                                </div>
-                            </form>
-
-                        </li>
-                    </ul>
+            <form>
+                <div class="caixa-busca">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="busca" name="q" placeholder="Pesquisar...">
+                    <button type="submit">Buscar</button>
                 </div>
+            </form>
+
+        </div>
     </div>
 </header>
 
-    <h1 id="titulo_pagina">Mais vendidos</h1>
+<h1 id="titulo_pagina">Mais vendidos</h1>
 
-    <div class="layout-principal">
+<div class="layout-principal">
 
-        <div class="container-colunas">
-            <div class="coluna" >
-                <h3> Filtros </h3>
+    <div class="container-colunas">
+        <div class="coluna">
+            <h2>Filtros</h2>
 
-                <ul>
-                    <li>Editora</li>
-                    <li>Estilo da capa</li>
-                    <li>Gênero</li>
-                    <li>Numero de paginas</li>
-                    <li>Preço</li>
-                    <li>XXXX</li>
-                    <li>XXXX</li>
-                    <li>XXXX</li>
-                </ul>
-
-            </div>
-        </div>
-    
-        <div class="resto-pagina"> 
-
-            <div class="todososprodutos">
-                <div class="produtinhos">
-
-                    <div class="produtos">
-                        <form action="livro1.html" method="get">
-                            <button type="submit" class="botao-invisivel">
-                                <img src="orgulho-e-preconceito.jpg" alt="livro" id="foto">
-                                <div class="infos">
-                                    <ul>
-                                        <li>Orgulho e Preconceito</li>
-                                        <li>Preço: R$ 42,99 </li>
-                                        <li><strong> Mais detalhes...</strong></li>
-                                    </ul>
-                                </div>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="produtos">
-                        <form action="livro2.html" method="get">
-                            <button type="submit" class="botao-invisivel">
-                                <img src="pequenoprincipe.jpg" alt="livro" id="foto">
-                                <ul>
-                                    <li>O Pequeno Príncipe</li>
-                                    <li>Preço: R$ 19,90 </li>
-                                    <li><strong> Mais detalhes...</strong></li>
-
-                                </ul>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="produtos">
-                        <form action="livro3.html" method="get">
-                            <button type="submit" class="botao-invisivel">
-                                <img src="1984.jpg" alt="livro" id="foto">
-                                <ul>
-                                    <li>1984</li>
-                                    <li>Preço: R$ 54,02</li>
-                                    <li><strong> Mais detalhes...</strong></li>
-                                </ul>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="produtos">
-                        <form action="livro4.html" method="get">
-                            <button type="submit" class="botao-invisivel">
-                                <img src="cemanos.jpg" alt="livro" id="foto">
-                                <ul>
-                                    <li>Cem Anos de Solidão</li>
-                                    <li>Preço: R$ 69,90</li>
-                                    <li><strong> Mais detalhes...</strong></li>
-                                </ul>
-                            </button>
-                        </form>
-                    </div>
-                </div> 
-            </div>
-
-            <div class="todososprodutos">
-
-                <div class="produtinhos">
-
-                    <div class="produtos">
-                        <form action="livro5.html" method="get">
-                            <button type="submit" class="botao-invisivel">
-                                <img src="metamorfose.jpg" alt="livro" id="foto">
-                                <ul>
-                                    <li>A Metamorfose</li>
-                                    <li>Preço: R$ 23,55 </li>
-                                    <li><strong> Mais detalhes...</strong></li>
-                                </ul>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="produtos">
-                        <form action="livro6.html" method="get">
-                            <button type="submit" class="botao-invisivel">
-                                <img src="Frankenstein.jpg" alt="livro" id="foto">
-                                <ul>
-                                    <li>Frankenstein</li>
-                                    <li>Preço: R$ 16,90</li>
-                                    <li><strong> Mais detalhes...</strong></li>
-                                </ul>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="produtos">
-                        <form action="livro7.html" method="get">
-                            <button type="submit" class="botao-invisivel">
-                                <img src="DomCasmurro.jpg" alt="livro" id="foto">
-                                <ul>
-                                    <li>Dom Casmurro</li>
-                                    <li>Preço: R$ 71,66</li>
-                                    <li><strong> Mais detalhes...</strong></li>
-                                </ul>
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="produtos">
-                        <form action="livro8.html" method="get">
-                            <button type="submit" class="botao-invisivel">
-                                <img src="domQuixote.jpg" alt="livro" id="foto">
-                                <ul>
-                                    <li>Dom Quixote</li>
-                                    <li>Preço: R$: 67,00</li>
-                                    <li><strong> Mais detalhes...</strong></li>
-                                </ul>
-                            </button>
-                        </form>
-                    </div>
-                </div>    
-            </div>
+            <ul>
+                <li>Editora</li>
+                <li>Estilo da capa</li>
+                <li>Gênero</li>
+                <li>Número de páginas</li>
+                <li>Preço</li>
+                <li>XXXX</li>
+                <li>XXXX</li>
+                <li>XXXX</li>
+            </ul>
         </div>
     </div>
+
+    <div class="resto-pagina">
+
+        <div class="todososprodutos">
+            <div class="produtinhos">
+
+                <a href="livro1.html" class="produto">
+                    <img src="orgulho-e-preconceito.jpg" alt="livro" class="foto">
+                    <div>
+                        <p>Orgulho e Preconceito</p>
+                        <p>Preço: R$ 42,99</p>
+                        <strong>Mais detalhes...</strong>
+                    </div>
+                </a>
+
+                <a href="livro2.html" class="produto">
+                    <img src="pequenoprincipe.jpg" alt="livro" class="foto">
+                    <div>
+                        <p>O Pequeno Príncipe</p>
+                        <p>Preço: R$ 19,90</p>
+                        <strong>Mais detalhes...</strong>
+                    </div>
+                </a>
+
+                <a href="livro3.html" class="produto">
+                    <img src="1984.jpg" alt="livro" class="foto">
+                    <div>
+                        <p>1984</p>
+                        <p>Preço: R$ 54,02</p>
+                        <strong>Mais detalhes...</strong>
+                    </div>
+                </a>
+
+                <a href="livro4.html" class="produto">
+                    <img src="cemanos.jpg" alt="livro" class="foto">
+                    <div>
+                        <p>Cem Anos de Solidão</p>
+                        <p>Preço: R$ 69,90</p>
+                        <strong>Mais detalhes...</strong>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="todososprodutos">
+            <div class="produtinhos">
+
+                <a href="livro5.html" class="produto">
+                    <img src="metamorfose.jpg" alt="livro" class="foto">
+                    <div>
+                        <p>A Metamorfose</p>
+                        <p>Preço: R$ 23,55</p>
+                        <strong>Mais detalhes...</strong>
+                    </div>
+                </a>
+
+                <a href="livro6.html" class="produto">
+                    <img src="Frankenstein.jpg" alt="livro" class="foto">
+                    <div>
+                        <p>Frankenstein</p>
+                        <p>Preço: R$ 16,90</p>
+                        <strong>Mais detalhes...</strong>
+                    </div>
+                </a>
+
+                <a href="livro7.html" class="produto">
+                    <img src="DomCasmurro.jpg" alt="livro" class="foto">
+                    <div>
+                        <p>Dom Casmurro</p>
+                        <p>Preço: R$ 71,66</p>
+                        <strong>Mais detalhes...</strong>
+                    </div>
+                </a>
+
+                <a href="livro8.html" class="produto">
+                    <img src="domQuixote.jpg" alt="livro" class="foto">
+                    <div>
+                        <p>Dom Quixote</p>
+                        <p>Preço: R$ 67,00</p>
+                        <strong>Mais detalhes...</strong>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <footer>
-
-    <div  class="rodapé-final">
-
-        <p>&copy; <span id="current-year"></span>OpenBook</p>
-                           
+    <div class="rodape-final">
+        <p>&copy; <span id="current-year"></span> OpenBook</p>
     </div>
-            
 </footer>
 
-</body>
+<script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
 
+</body>
 </html>

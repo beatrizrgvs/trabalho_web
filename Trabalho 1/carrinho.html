@@ -1,168 +1,161 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="Trabalho1.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <title>Carrinho</title>
 </head>
-<header class="cabeçalho">
-    <div  class="menu">
-        <div class="nome">
-    <img src="logo.jpg" alt="logo" width="100px" >
-      <h1 id="nome">Open Book</h1>
-      </div>
 
-          <div class="submenu-cima">
-            
-            <nav>
-                
-                <ul>
-
-                    <form action="index.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Início </button>       
-                    </div>
-                    </form>
-
-
-                    <form action="login.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Login </button>       
-                    </div>
-            
-                    </form>
-
-                    <form action="cadastro.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Cadastro </button>       
-                    </div>
-            
-                    </form>
-
-                    <form action="carrinho.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Carrinho </button>       
-                    </div>
-            
-                    </form>
-
-                    </ul>
-
-                </nav>                      
-
-            
-
-            <ul>
-                <li>
-                    <form id = "busca">
-                        <div class="caixa-busca">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="search" id="busca" name="q" placeholder="Pesquisar..." >
-                        <button type="submit">Buscar </i></button>
-                        </div>
-                    </form>
-
-                </li>
-
-            </ul>
-      </div>
-    
-</header>
 <body>
-    <h1 id="titulo_pagina">Carrinho</h1>
 
- <div class="todos_itens_carrinho">
-        <div class="organizacao_itens">
+<header>
 
-            <div class="item">
-                
-                <img id="foto" src=orgulho-e-preconceito.jpg alt="orgulho-e-preconceito">
+    <div class="menu">
 
+        <div class="nome">
+            <img src="logo.jpg" alt="logo" id="logo">
+            <h1 id="nome">Open Book</h1>
+        </div>
+
+        <div class="submenu-cima">
+
+            <nav>
                 <ul>
-                    <li id="produto_nome_carrinho"> Orgulho e preconceito </li>
-                    <li id="produto_qnt"><label for="qnt">Quantidade:</label>
-                    <input type="number" value="2" readonly></li>
-                    <li> Preço unitario: R$ 42,99 </li>
-                    <li> Preço total: R$ 85,98 </li>
-                    <li> CEP: 88495-000 </li>
-                    <li> Frete: R$ 20,00 </li>
-                    <li> Preço total (incluindo frete): R$ 105,98 </li>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
                 </ul>
+            </nav>
 
-            </div>
+            <form>
+                <div class="caixa-busca">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="busca" name="q" placeholder="Pesquisar...">
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
 
-            <div class="item">
-                
-                <img id="foto" src=pequenoprincipe.jpg alt="pequenoprincipe">
-
-                <ul>
-                    <li id="produto_nome_carrinho"> O pequeno príncipe </li>
-                    <li id="produto_qnt"><label for="qnt">Quantidade:</label>
-                    <input type="number" value="1" readonly></li>
-                    <li> Preço unitario: R$ 19,90 </li>
-                    <li> Preço total: R$ 19,90 </li>
-                    <li> CEP: 88495-000 </li>
-                    <li> Frete: R$ 20,00 </li>
-                    <li> Preço total (incluindo frete): R$ 39,90 </li>
-                </ul>
-
-            </div>
-
-            <div class="item">
-                
-                <img id="foto" src=1984.jpg alt="1984">
-
-                <ul>
-                    <li id="produto_nome_carrinho"> 1984 </li>
-                    <li id="produto_qnt"><label for="qnt">Quantidade:</label>
-                    <input type="number" value="2" readonly></li>
-                    <li> Preço unitario: R$ 54,02 </li>
-                    <li> Preço total: R$ 108,04 </li>
-                    <li> CEP: 88495-000 </li>
-                    <li> Frete: R$ 20,00 </li>
-                    <li> Preço total (incluindo frete):R$ 128,04 </li>
-                </ul>
-
-            </div>
-
-            <div class="item">
-                
-                <img id="foto" src=cemanos.jpg alt="cemanos">
-
-                <ul>
-                    <li id="produto_nome_carrinho"> Cem anos de solidão </li>
-                    <li id="produto_qnt"><label for="qnt">Quantidade:</label>
-                    <input type="number" value="1" readonly></li>
-                    <li> Preço unitario: R$ 69,90 </li>
-                    <li> Preço total: R$ 69,90 </li>
-                    <li> CEP: 88495-000 </li>
-                    <li> Frete: R$ 20,00 </li>
-                    <li> Preço total (incluindo frete): R$ 89,90 </li>
-                </ul>
-
-            </div>
         </div>
     </div>
+</header>
 
-    <div class="button"  id="botao_carrinho">
-        <button type="submit"> Comprar </button>
+<h1 id="titulo_pagina">Carrinho</h1>
+
+<div class="todos_itens_carrinho">
+    <div class="organizacao_itens">
+
+        <div class="item">
+
+            <img class="foto" src="orgulho-e-preconceito.jpg" alt="orgulho-e-preconceito">
+
+            <ul>
+                <li class="produto_nome_carrinho">Orgulho e preconceito</li>
+
+                <li class="produto_qnt">
+                    <label for="qnt1">Quantidade:</label>
+                    <input id="qnt1" type="number" value="2" readonly>
+                </li>
+
+                <li>Preço unitario: R$ 42,99</li>
+                <li>Preço total: R$ 85,98</li>
+                <li>CEP: 88495-000</li>
+                <li>Frete: R$ 20,00</li>
+                <li>Preço total (incluindo frete): R$ 105,98</li>
+            </ul>
+
+        </div>
+
+        <div class="item">
+
+            <img class="foto" src="pequenoprincipe.jpg" alt="pequenoprincipe">
+
+            <ul>
+                <li class="produto_nome_carrinho">O pequeno príncipe</li>
+
+                <li class="produto_qnt">
+                    <label for="qnt2">Quantidade:</label>
+                    <input id="qnt2" type="number" value="1" readonly>
+                </li>
+
+                <li>Preço unitario: R$ 19,90</li>
+                <li>Preço total: R$ 19,90</li>
+                <li>CEP: 88495-000</li>
+                <li>Frete: R$ 20,00</li>
+                <li>Preço total (incluindo frete): R$ 39,90</li>
+            </ul>
+
+        </div>
+
+        <div class="item">
+
+            <img class="foto" src="1984.jpg" alt="1984">
+
+            <ul>
+                <li class="produto_nome_carrinho">1984</li>
+
+                <li class="produto_qnt">
+                    <label for="qnt3">Quantidade:</label>
+                    <input id="qnt3" type="number" value="2" readonly>
+                </li>
+
+                <li>Preço unitario: R$ 54,02</li>
+                <li>Preço total: R$ 108,04</li>
+                <li>CEP: 88495-000</li>
+                <li>Frete: R$ 20,00</li>
+                <li>Preço total (incluindo frete): R$ 128,04</li>
+            </ul>
+
+        </div>
+
+        <div class="item">
+
+            <img class="foto" src="cemanos.jpg" alt="cemanos">
+
+            <ul>
+                <li class="produto_nome_carrinho">Cem anos de solidão</li>
+
+                <li class="produto_qnt">
+                    <label for="qnt4">Quantidade:</label>
+                    <input id="qnt4" type="number" value="1" readonly>
+                </li>
+
+                <li>Preço unitario: R$ 69,90</li>
+                <li>Preço total: R$ 69,90</li>
+                <li>CEP: 88495-000</li>
+                <li>Frete: R$ 20,00</li>
+                <li>Preço total (incluindo frete): R$ 89,90</li>
+            </ul>
+
+        </div>
+
     </div>
+</div>
+
+<div class="botao_carrinho">
+    <button type="button">Comprar</button>
+</div>
+
+<footer>
+    <div class="rodape-final">
+        <p>&copy; <span id="current-year"></span> OpenBook</p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
 
 </body>
-<footer>
 
-    <div  class="rodapé-final">
-
-        <p>&copy; <span id="current-year"></span>OpenBook</p>
-                           
-    </div>
-            
-            
-      
-</footer>
 </html>

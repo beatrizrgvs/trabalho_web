@@ -10,202 +10,180 @@
     <title>1984</title>
 </head>
 
-<header class="cabeçalho">
-    <div  class="menu">
-       <div class="nome">
-    <img src="logo.jpg" alt="logo" width="100px" >
-      <h1 id="nome">Open Book</h1>
-      </div>
-
-          <div class="submenu-cima">
-            
-            <nav>
-                
-                <ul>
-
-                    <form action="index.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Início </button>       
-                    </div>
-                    </form>
-
-
-                    <form action="login.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Login </button>       
-                    </div>
-            
-                    </form>
-
-                    <form action="cadastro.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Cadastro </button>       
-                    </div>
-            
-                    </form>
-
-                    <form action="carrinho.html" method="post">
-                    <div class="button">
-                    <button type="submit"> Carrinho </button>       
-                    </div>
-            
-                    </form>
-
-                    </ul>
-
-                </nav>                      
-
-            
-
-            <ul>
-                <li>
-                    <form id = "busca">
-                        <div class="caixa-busca">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="search" id="busca" name="q" placeholder="Pesquisar..." >
-                        <button type="submit">Buscar </i></button>
-                        </div>
-                    </form>
-                </li>
-
-            </ul>
-      </div>
-    
-</header>
-
 <body>
 
-    <h1 id="titulo_pagina">Detalhes do livro</h1>
+<header>
+    <div class="menu">
 
-    <div class="produto_detalhes">
-                
-        <img id="foto" src=1984.jpg alt="1984">
+        <div class="nome">
+            <img src="logo.jpg" alt="logo" id="logo">
+            <h1 id="nome">Open Book</h1>
+        </div>
 
-        <ul>
-            <li id="produto_nome_detalhes"> 1984 </li> 
+        <div class="submenu-cima">
 
-            <li> Preço à vista: R$ 54,02 </li>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                </ul>
+            </nav>
 
-            <li><label for="precop">Preço parcelado (até 5 vezes):</label>  
-                
-            <select name="parcelamentos">
-                <option value="uma_p"> 1x: R$ XX,XX</option>
-                <option value="duas_p"> 2x: R$ XX,XX </option>
-                <option value="tres_p"> 3x: R$ XX,XX </option>
-                <option value="quatro_p"> 4x: R$ XX,XX </option>
-                <option value="cinco_p"> 5x: R$ XX,XX  </option>
-            </select></li>
+            <form>
+                <div class="caixa-busca">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="busca" name="q" placeholder="Pesquisar...">
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
 
-            <li id="produto_prazo"><label for="prazo">Prazo de entrega: </label>
-            <input type="date" value="2026-04-15" readonly></li>
-
-            <li id="produto_qnt"><label for="qnt">Quantidade:</label>
-            <input type="number" id="qnt" name="qnt" min="1" max="10" step="1"></li>
-
-            <li><label for="pagar">Formas de pagamento:</label>
-
-            <li>
-                <select name="pagamentos">
-                    <option value="cartao_Visa">Cartão de crédito Visa</option>
-                    <option value="cartao_Mastercard">Cartão de crédito Mastercard</option>
-                    <option value="cartao_debito">Cartão de débito</option>
-                    <option value="pix">Pix</option>
-                    <option value="boleto_bancario">Boleto bancário</option>
-                </select>
-            </li>
-        </ul>
+        </div>
     </div>
+</header>
 
-    <div class="button" id="botao_comprar">
-        <button type="submit"> Adicionar ao carrinho </button>
+<h1 id="titulo_pagina">Detalhes do livro</h1>
+
+<div class="produto_detalhes">
+            
+    <img class="foto" src=1984.jpg alt="1984">
+
+    <ul>
+        <li id="produto_nome_detalhes"> 1984 </li> 
+
+        <li> Preço à vista: R$ 54,02 </li>
+
+        <li>
+            <label for="parcelas">Preço parcelado (até 5 vezes):</label>
+            <select id="parcelas" name="parcelamentos">
+                <option value="1">1x: R$ XX,XX</option>
+                <option value="2">2x: R$ XX,XX</option>
+                <option value="3">3x: R$ XX,XX</option>
+                <option value="4">4x: R$ XX,XX</option>
+                <option value="5">5x: R$ XX,XX</option>
+            </select>
+        </li>
+
+        <li>
+            <label for="prazo">Prazo de entrega:</label>
+            <input id="prazo" type="date" value="2026-04-15" readonly>
+        </li>
+
+        <li>
+            <label for="qnt">Quantidade:</label>
+            <input id="qnt" type="number" name="qnt" min="1" max="10" step="1">
+        </li>
+
+        <li>
+            <label for="pagamento">Formas de pagamento:</label>
+            <select id="pagamento" name="pagamentos">
+                <option value="visa">Cartão de crédito Visa</option>
+                <option value="mastercard">Cartão de crédito Mastercard</option>
+                <option value="debito">Cartão de débito</option>
+                <option value="pix">Pix</option>
+                <option value="boleto">Boleto bancário</option>
+            </select>
+        </li>
+    </ul>
+</div>
+
+<div class="button" id="botao_comprar">
+    <button type="submit"> Adicionar ao carrinho </button>
+</div>
+
+<p class="descricao_avaliacao">Descrição e detalhes do produto</p>
+<p class="descricao_texto"> Winston Smith, número 6079, ocupa uma função comum no Departamento de Documentação: “retificar” fatos de acordo com as orientações do Ministério da Verdade. E ele não mede esforços em seu objetivo de erradicar, em todos os níveis, quaisquer elementos que ameacem sua existência. A individualidade, o livre-arbítrio, o pensamento crítico, o amor – todos considerados transgressões inadmissíveis – são punidos com o máximo de rigor e severidade. Nada escapa aos olhos do Grande Irmão, o grande líder do regime, e é por meio de sua vigilância intensiva, cujos “olhos eram capazes de o seguir (…) em moedas, estampas, capas de livros, bandeiras, pôsteres e invólucros de pacotes de cigarro”, que o regime se certifica milimetricamente da soberania de seu poder. Por outro lado, Winston se sente ávido por conhecer algum tipo de liberdade. Assim, pouco a pouco avança em seus atos de resistência em busca de reavivar sua humanidade, obliterada por décadas da repressão política incidente no mais profundo nível de seus pensamentos e lembranças. Entretanto, para realizar seu desejo ele precisará desviar cuidadosamente de um perigoso campo minado sob o escrutínio do Partido e do Grande Irmão. </p>
+
+<table class="tabela_detalhes">
+
+    <tr>
+
+        <th>Editora:</th>
+        <td>Excelsior</td>
+
+    </tr>
+
+    <tr>
+
+        <th>Ano da edição:</th>
+        <td>2021</td>
+
+    </tr>
+
+    <tr>
+
+        <th>ISBN:</th>
+        <td>978-6587435169</td>
+        
+    </tr>
+
+    <tr>
+
+        <th>Gênero:</th>
+        <td>Ficção</td>
+        
+    </tr>
+
+    <tr>
+
+        <th>Número de paginas:</th>
+        <td>316 páginas</td>
+        
+    </tr>
+
+    <tr>
+
+        <th>Estilo de capa:</th>
+        <td>Dura</td>
+        
+    </tr>
+
+</table>
+
+<p class="descricao_avaliacao">Avaliações</p>
+
+<div class="avaliacoes">
+
+    <ul>
+        <li class="data_ava">
+            <label>Data da avaliação:</label>
+            <input type="date" value="2025-04-15" readonly>
+        </li>
+        <li>⭐⭐⭐⭐⭐</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit...</li>
+    </ul>
+
+    <ul>
+        <li class="data_ava">
+            <label>Data da avaliação:</label>
+            <input type="date" value="2023-10-23" readonly>
+        </li>
+        <li>⭐⭐⭐</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit...</li>
+    </ul>
+
+    <ul>
+        <li class="data_ava">
+            <label>Data da avaliação:</label>
+            <input type="date" value="2024-01-21" readonly>
+        </li>
+        <li>⭐⭐⭐⭐</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit...</li>
+    </ul>
+
+</div>
+
+<footer>
+    <div class="rodape-final">
+        <p>&copy; <span id="current-year"></span> OpenBook</p>
     </div>
-    
-    <p id="descricao_avaliacao">Descrição e detalhes do produto</p>
-    <p> Winston Smith, número 6079, ocupa uma função comum no Departamento de Documentação: “retificar” fatos de acordo com as orientações do Ministério da Verdade. E ele não mede esforços em seu objetivo de erradicar, em todos os níveis, quaisquer elementos que ameacem sua existência. A individualidade, o livre-arbítrio, o pensamento crítico, o amor – todos considerados transgressões inadmissíveis – são punidos com o máximo de rigor e severidade. Nada escapa aos olhos do Grande Irmão, o grande líder do regime, e é por meio de sua vigilância intensiva, cujos “olhos eram capazes de o seguir (…) em moedas, estampas, capas de livros, bandeiras, pôsteres e invólucros de pacotes de cigarro”, que o regime se certifica milimetricamente da soberania de seu poder. Por outro lado, Winston se sente ávido por conhecer algum tipo de liberdade. Assim, pouco a pouco avança em seus atos de resistência em busca de reavivar sua humanidade, obliterada por décadas da repressão política incidente no mais profundo nível de seus pensamentos e lembranças. Entretanto, para realizar seu desejo ele precisará desviar cuidadosamente de um perigoso campo minado sob o escrutínio do Partido e do Grande Irmão. </p>
+</footer>
 
-    <table border="1" class="tabela_detalhes">
-
-        <tr>
-
-            <th>Editora:</th>
-            <td>Excelsior</td>
-
-        </tr>
-
-        <tr>
-
-            <th>Ano da edição:</th>
-            <td>2021</td>
-
-        </tr>
-
-        <tr>
-
-            <th>ISBN:</th>
-            <td>978-6587435169</td>
-            
-        </tr>
-
-        <tr>
-
-            <th>Gênero:</th>
-            <td>Ficção</td>
-            
-        </tr>
-
-        <tr>
-
-            <th>Número de paginas:</th>
-            <td>316 páginas</td>
-            
-        </tr>
-
-        <tr>
-
-            <th>Estilo de capa:</th>
-            <td>Dura</td>
-            
-        </tr>
-
-    </table>
-
-    <p id="descricao_avaliacao">Avaliações</p>
-
-    <div class="avaliacoes">
-
-        <ul>
-            <li id="data_ava"><label for="data_ava"> Data da avaliação: </label>
-            <input type="date" value="2025-04-15" readonly></li>
-            <li>⭐⭐⭐⭐⭐</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-        </ul>
-
-        <ul>
-            <li id="data_ava"><label for="data_ava"> Data da avaliação: </label>
-            <input type="date" value="2023-10-23" readonly></li>
-            <li>⭐⭐⭐</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-        </ul>
-
-        <ul>
-            <li id="data_ava"><label for="data_ava"> Data da avaliação: </label>
-            <input type="date" value="2024-01-21" readonly></li>
-            <li>⭐⭐⭐⭐</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam totam mollitia illum id eligendi enim fugit autem veritatis aut vel? Quos iusto, molestias eveniet dolorum aliquam tempore rem amet assumenda!</li>
-        </ul>
-
-    </div>
+<script>
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
 
 </body>
-<footer>
 
-    <div  class="rodapé-final">
-
-        <p>&copy; <span id="current-year"></span>OpenBook</p>
-                           
-    </div>
-            
-            
-      
-</footer>
 </html>
