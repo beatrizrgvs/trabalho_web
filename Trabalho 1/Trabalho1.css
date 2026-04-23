@@ -214,7 +214,7 @@ select{
 
 .caixa-busca i {
     position: absolute; 
-    left: 200px;      
+    left: 190px;      
     top: 50%;          
     transform: translateY(-50%);
     color: #888;
