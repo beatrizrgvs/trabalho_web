@@ -46,49 +46,51 @@
 
     <div class="login-cadastro-body">
 
-    <div class="login-cadastro">
-        
-        <form action="index.html" method="post">
+        <div class="login-cadastro">
 
-            <h2 id="titulo_pagina">Cadastro</h2>
+            <form onsubmit="verificar(event)">
 
-            <div>
-                <label for="name"> Nome Completo: </label><br>
-                <input type="text" id="name" required>
-            </div>
+                <h2 id="titulo_pagina">Cadastro</h2>
 
-            <div>
-                <label for="login"> Login: </label><br>
-                <input type="text" id="login" required>
-            </div>
+                <div id="mensagem-erro"> </div>
 
-            <div>
-                <label for="senha"> Senha: </label><br>
-                <input type="text" id="senha" required>
-            </div>
+                <div id="campo">
+                    <label for="name"> Nome Completo: </label><br>
+                    <input type="text" id="name" >
+                </div>
 
-            <div>
-                <label for="cpf"> Cpf: </label><br>
-                <input type="text" id="cpf" required>
-            </div>
+                <div id="campo">
+                    <label for="login"> Login: </label><br>
+                    <input type="text" id="login" >
+                </div>
 
-            <div>
-                <label for="date"> Data de nascimento: </label><br>
-                <input type="date" id="date" required>
-            </div>
+                <div id="campo">
+                    <label for="senha"> Senha: </label><br>
+                    <input type="text" id="senha" >
+                </div>
+
+                <div id="campo">
+                    <label for="cpf"> Cpf: </label><br>
+                    <input type="text" id="cpf" >
+                </div>
+
+                <div id="campo">
+                    <label for="date"> Data de nascimento: </label><br>
+                    <input type="date" id="date" >
+                </div>
+                
+                <div id="campo">
+                    <label for="email"> Email: </label><br>
+                    <input type="email" id="email" >
+                </div>
+
+                <div id="campo" class="button">
+                    <button type="submit">Cadastrar</button>
+                    <button type="reset"> Limpar </button>        
+                </div>
             
-            <div>
-                <label for="email"> Email: </label><br>
-                <input type="email" id="email" required>
-            </div>
-
-            <div class="button">
-                <button type="submit"> Cadastrar </button>
-                <button type="reset"> Limpar </button>        
-            </div>
-        
-        </form>
-    </div>
+            </form>
+        </div>
     </div>
 
 <footer>
@@ -98,9 +100,60 @@
 </footer>
 
 <script>
-    document.getElementById("current-year").textContent = new Date().getFullYear();
-</script>
-        
-</body>
 
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+
+    function verificar(event) {
+
+        event.preventDefault();
+
+        const nome = document.getElementById("name").value.trim();
+        const login = document.getElementById("login").value.trim();
+        const senha = document.getElementById("senha").value.trim();
+        const cpf = document.getElementById("cpf").value.trim();
+        const data = document.getElementById("date").value;
+        const email = document.getElementById("email").value.trim();
+
+        const erroDiv = document.getElementById("mensagem-erro");
+        const divs = document.querySelectorAll(".login-cadastro #campo");
+
+        // verifica se algum campo está vazio
+        if ( nome === "" || login === "" || senha === "" || cpf === "" || data === "" || email === "") {
+
+            erroDiv.innerHTML = `<p>Erro: Todos os campos são obrigatórios!</p>`;
+
+            erroDiv.style.display = "block";
+
+            divs.forEach(div => {
+                    div.style.paddingLeft = "100px"
+            })
+
+            return;
+        }
+
+        // cria o objeto do usuário
+        const dadosUsuario = {
+            nome: nome,
+            login: login,
+            senhaUsuario: senha,
+            cpf: cpf,
+            dataNascimento: data,
+            email: email
+        };
+
+        // salva no LocalStorage
+        localStorage.setItem("cadastroUsuario", JSON.stringify(dadosUsuario));
+
+        // teste para confirmar que salvou
+        console.log(localStorage.getItem("cadastroUsuario"));
+
+        alert("Cadastro realizado com sucesso!");
+
+        // vai para o login
+        window.location.href = "login.html";
+
+    }
+
+</script>
+</body>
 </html>

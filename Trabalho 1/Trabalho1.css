@@ -139,6 +139,15 @@ select{
     margin-top: 10%;
 }
 
+#mensagem-erro{
+    display: none; 
+    color: rgb(99, 14, 14); 
+    background-color:rgb(252, 233, 199);
+    padding: 10px; 
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
 /* \\\\Produtos\\\\ */
 
 .todososprodutos {
