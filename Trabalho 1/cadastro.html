@@ -99,61 +99,7 @@
     </div>
 </footer>
 
-<script>
+<script src="Scripts.js"></script>
 
-    document.getElementById("current-year").textContent = new Date().getFullYear();
-
-    function verificar(event) {
-
-        event.preventDefault();
-
-        const nome = document.getElementById("name").value.trim();
-        const login = document.getElementById("login").value.trim();
-        const senha = document.getElementById("senha").value.trim();
-        const cpf = document.getElementById("cpf").value.trim();
-        const data = document.getElementById("date").value;
-        const email = document.getElementById("email").value.trim();
-
-        const erroDiv = document.getElementById("mensagem-erro");
-        const divs = document.querySelectorAll(".login-cadastro #campo");
-
-        // verifica se algum campo está vazio
-        if ( nome === "" || login === "" || senha === "" || cpf === "" || data === "" || email === "") {
-
-            erroDiv.innerHTML = `<p>Erro: Todos os campos são obrigatórios!</p>`;
-
-            erroDiv.style.display = "block";
-
-            divs.forEach(div => {
-                    div.style.paddingLeft = "100px"
-            })
-
-            return;
-        }
-
-        // cria o objeto do usuário
-        const dadosUsuario = {
-            nome: nome,
-            login: login,
-            senhaUsuario: senha,
-            cpf: cpf,
-            dataNascimento: data,
-            email: email
-        };
-
-        // salva no LocalStorage
-        localStorage.setItem("cadastroUsuario", JSON.stringify(dadosUsuario));
-
-        // teste para confirmar que salvou
-        console.log(localStorage.getItem("cadastroUsuario"));
-
-        alert("Cadastro realizado com sucesso!");
-
-        // vai para o login
-        window.location.href = "login.html";
-
-    }
-
-</script>
 </body>
 </html>

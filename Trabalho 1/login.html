@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="Trabalho1.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"rel="stylesheet">
 
     <title>Login</title>
 
 </head>
 
-
 <body>
-
-
 <header>
 
     <div class="menu">
@@ -92,80 +80,7 @@
     </div>
 </footer>
 
-<script>
+<script src="Scripts.js"></script>
 
-    document.getElementById("current-year").textContent = new Date().getFullYear();
-
-    document.getElementById("form-login").addEventListener("submit", function(event) {
-
-        event.preventDefault();
-
-        const login = document.getElementById("login").value.trim();
-        const senha = document.getElementById("senha").value.trim();
-        const erroDiv = document.getElementById("mensagem-erro");
-        const divs = document.querySelectorAll(".login-cadastro #campo");
-
-        // campo vazio
-        if (login === "" || senha === "") {
-
-            erroDiv.innerHTML = "<p>Erro: Todos os campos são obrigatórios!</p>";
-
-            erroDiv.style.display = "block";
-
-            divs.forEach(div => {
-                div.style.paddingLeft = "100px"
-            })
-
-            return;
-        }
-
-        // procura o cadastro no LocalStorage
-        const textoSalvo =
-            localStorage.getItem("cadastroUsuario");
-
-
-        // não existe cadastro
-        if (textoSalvo === null) {
-
-            erroDiv.innerHTML = "<p>Erro: Nenhum usuário cadastrado neste navegador!</p>";
-
-            erroDiv.style.display = "block";
-            divs.forEach(div => {
-                div.style.paddingLeft = "100px"
-            })
-
-            return;
-        }
-
-        // converte os dados salvos
-        const usuario = JSON.parse(textoSalvo);
-
-        // login correto
-        if ( login === usuario.login && senha === usuario.senhaUsuario ){
-
-            erroDiv.style.display = "none";
-
-            alert("Login realizado com sucesso!");
-
-            window.location.href = "index.html";
-
-        }
-
-        // login incorreto
-        else {
-
-            erroDiv.innerHTML = "<p>Erro: Login ou senha incorretos!</p>";
-
-            erroDiv.style.display = "block";
-
-            divs.forEach(div => {
-                div.style.paddingLeft = "50px"
-            })
-
-        }
-
-    });
-
-</script>
 </body>
 </html>
