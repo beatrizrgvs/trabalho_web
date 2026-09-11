@@ -1,7 +1,12 @@
-/* \\\\Copyright no footer\\\\ */
-document.getElementById("current-year").textContent = new Date().getFullYear();
+/* \\\\Footer\\\\ */
 
-/* \\\\Pagina cadastro\\\\ */
+const currentYear = document.getElementById("current-year");
+
+if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+}
+
+/* \\\\Pagina de cadastro\\\\ */
 
 function verificar(event) {
 
@@ -18,18 +23,45 @@ function verificar(event) {
     const divs = document.querySelectorAll(".login-cadastro #campo");
 
     // verifica se algum campo ta vazio
-    if ( nome === "" || login === "" || senha === "" || cpf === "" || data === "" || email === "") {
+    if(nome === "" || login === "" || senha === "" || cpf === "" || data === "" || email === ""){
 
-        erroDiv.innerHTML = `<p>Erro: Todos os campos são obrigatórios!</p>`;
-
+        erroDiv.innerHTML = "<p>Erro: Todos os campos são obrigatórios!</p>";
         erroDiv.style.display = "block";
 
         divs.forEach(div => {
-                div.style.paddingLeft = "100px"
-        })
+            div.style.paddingLeft = "100px";
+        });
 
         return;
     }
+
+    // pega os usuarios cadastrados
+    let usuarios = JSON.parse(localStorage.getItem("cadastroUsuarios")) || [];
+
+    // verifica se o login ja existe
+    const loginExiste = usuarios.find(function(usuario){
+        return usuario.login === login;
+    });
+
+    if (loginExiste){
+        erroDiv.innerHTML = "<p>Erro: Este login já está cadastrado!</p>";
+        erroDiv.style.display = "block";
+
+        return;
+    }
+
+    // verifica se o cpf ja existe
+    const cpfExiste = usuarios.find(function(usuario) {
+        return usuario.cpf === cpf;
+    });
+
+    if (cpfExiste){
+        erroDiv.innerHTML = "<p>Erro: Este CPF já está cadastrado!</p>";
+        erroDiv.style.display = "block";
+
+        return;
+    }
+
 
     // cria o objeto do usuario
     const dadosUsuario = {
@@ -41,216 +73,338 @@ function verificar(event) {
         email: email
     };
 
-    // pega os usuários já cadastrados
-    let usuarios = JSON.parse(localStorage.getItem("cadastroUsuarios")) || [];
 
     // adiciona o novo usuário
     usuarios.push(dadosUsuario);
 
-    // salva todos os usuários
-    localStorage.setItem(
-        "cadastroUsuarios", JSON.stringify(usuarios)
-    );
-
-    // teste para confirmar que salvou
-    console.log(localStorage.getItem("cadastroUsuarios"));
+    // salva todos os usuarios
+    localStorage.setItem("cadastroUsuarios",JSON.stringify(usuarios));
 
     alert("Cadastro realizado com sucesso!");
 
     // vai pro login
     window.location.href = "login.html";
+}
+
+/* \\\\pagina de login\\\\ */
+
+const formLogin = document.getElementById("form-login");
+
+if (formLogin){
+
+    formLogin.addEventListener("submit", function(event){
+
+        event.preventDefault();
+
+        const login = document.getElementById("login").value.trim();
+        const senha = document.getElementById("senha").value.trim();
+        const erroDiv = document.getElementById("mensagem-erro");
+        const divs = document.querySelectorAll(".login-cadastro #campo");
+
+        // verifica campos vazios
+        if (login === "" || senha === ""){
+
+            erroDiv.innerHTML = "<p>Erro: Todos os campos são obrigatórios!</p>";
+            erroDiv.style.display = "block";
+
+            divs.forEach(div => {
+                div.style.paddingLeft = "100px";
+            });
+
+            return;
+        }
+
+        // procura os usuarios
+        const textoSalvo = localStorage.getItem("cadastroUsuarios");
+
+        // nenhum usuario cadastrado
+        if (textoSalvo === null){
+
+            erroDiv.innerHTML = "<p>Erro: Nenhum usuário cadastrado neste navegador!</p>";
+            erroDiv.style.display = "block";
+
+            divs.forEach(div => {
+                div.style.paddingLeft = "100px";
+            });
+
+            return;
+        }
+
+        // converte para array
+        const usuarios = JSON.parse(textoSalvo);
+
+        // procura usuario com login e senha
+        const usuario = usuarios.find(function(usuario){
+                return (
+                    usuario.login === login && usuario.senhaUsuario === senha
+                );
+            });
+
+        // login correto
+        if (usuario){
+
+            erroDiv.style.display = "none";
+
+            // guarda o usuario que está logado
+            localStorage.setItem(
+                "usuarioLogado", JSON.stringify(usuario));
+
+            alert("Login realizado com sucesso!");
+
+            window.location.href = "index.html";
+
+        }
+
+        // login incorreto
+        else{
+
+            erroDiv.innerHTML = "<p>Erro: Login ou senha incorretos!</p>";
+            erroDiv.style.display = "block";
+
+            divs.forEach(div => {
+                div.style.paddingLeft = "50px";
+            });
+
+        }
+
+    });
 
 }
 
-/* \\\\Pagina login\\\\ */
+/* \\\\Livros\\\\ */
 
-document.getElementById("form-login").addEventListener("submit", function(event) {
+function mudar_preco(){
 
-    event.preventDefault();
+    const campoQnt = document.getElementById("qnt");
+    const precoVistaElemento = document.getElementById("preco_vista");
+    const totalPrecoElemento = document.getElementById("total_preco");
 
-    const login = document.getElementById("login").value.trim();
-    const senha = document.getElementById("senha").value.trim();
-    const erroDiv = document.getElementById("mensagem-erro");
-    const divs = document.querySelectorAll(".login-cadastro #campo");
-
-    // campo vazio
-    if (login === "" || senha === "") {
-
-        erroDiv.innerHTML = "<p>Erro: Todos os campos são obrigatórios!</p>";
-
-        erroDiv.style.display = "block";
-
-        divs.forEach(div => {
-            div.style.paddingLeft = "100px"
-        })
-
+    // Se n tiver na p\gina do produto, n faz nada
+    if( !campoQnt || !precoVistaElemento || !totalPrecoElemento
+    ){
         return;
     }
 
-    // procura o cadastro no LocalStorage
-    const textoSalvo = localStorage.getItem("cadastroUsuarios");
+    // pega a quantidade
+    const qnt = Number(campoQnt.value);
 
-    // nao existe cadastro
-    if (textoSalvo === null) {
+    // pega o texto do preço
+    const texto = precoVistaElemento.textContent;
 
-        erroDiv.innerHTML = "<p>Erro: Nenhum usuário cadastrado neste navegador!</p>";
+    // converte o preço para número
+    const precoVista =
+        Number(
+            texto
+                .replace("Preço à vista: R$", "")
+                .replace(",", ".")
+                .trim()
+        );
 
-        erroDiv.style.display = "block";
-        divs.forEach(div => {
-            div.style.paddingLeft = "100px"
-        })
+    // calcula o total
+    const total = precoVista * qnt;
 
-        return;
-    }
+    // mostra o resultado
+    totalPrecoElemento.textContent = `Preço total: R$ ${total.toFixed(2).replace(".", ",")}`;
+}
 
-    // converte os dados salvos
-    const usuarios = JSON.parse(textoSalvo);
+// evento da quantidade
+const campoQnt = document.getElementById("qnt");
 
-    const usuario = usuarios.find(function(usuario) { 
-        return usuario.login === login && usuario.senhaUsuario === senha;
-    });
-
-    // login correto
-    if(usuario){
-
-        erroDiv.style.display = "none";
-
-        alert("Login realizado com sucesso!");
-
-         localStorage.setItem("usuarioLogado", JSON.stringify(usuario))
-
-        window.location.href = "index.html";
-
-    }
-
-    // login incorreto
-    else{
-
-        erroDiv.innerHTML = "<p>Erro: Login ou senha incorretos!</p>";
-
-        erroDiv.style.display = "block";
-
-        divs.forEach(div => {
-            div.style.paddingLeft = "50px"
-        })
-    }
-});
+if(campoQnt){
+    campoQnt.addEventListener("input", mudar_preco);
+}
 
 /* \\\\Carrinho\\\\ */
 
-// Preço constante
+// preços dos produtos
 const v1 = 42.99;
 const v2 = 19.90;
 const v3 = 54.02;
 const v4 = 69.90;
 
-// valor constante dos fretes
-const f1 = 5;
-const f2 = 8;
-const f3 = 10;
 
-//função para atualizar automaticamente o preço por quant
+// valores dos fretes
+const frete1 = 5;
+const frete2 = 8;
+const frete3 = 10;
+
 function totalizar() {
-    let qtd1 = document.getElementById('qtd1'); 
-    let qtd2 = document.getElementById('qtd2');
-    let qtd3 = document.getElementById('qtd3');
-    let qtd4 = document.getElementById('qtd4');
 
-    // multiplicações por quant
-    var p1 = (qtd1.value) * v1;
-    var p2 = (qtd2.value) * v2;
-    var p3 = (qtd3.value) * v3;
-    var p4 = (qtd4.value) * v4;
-    
-    let total1 = document.getElementById('total1');
-    total1.innerHTML = "Preço total R$ " + p1.toFixed(2);
+    const qtd1 = document.getElementById("qtd1");
+    const qtd2 = document.getElementById("qtd2");
+    const qtd3 = document.getElementById("qtd3");
+    const qtd4 = document.getElementById("qtd4");
 
-    let total2 = document.getElementById('total2');
-    total2.innerHTML = "Preço total: R$ " + p2.toFixed(2);
-
-    let total3 = document.getElementById('total3');
-    total3.innerHTML = "Preço total: R$ " + p3.toFixed(2);
-
-    let total4 = document.getElementById('total4');
-    total4.innerHTML = "Preço total: R$ " + p4.toFixed(2);
-}
-
-// função para rodar toda vez que o valor das caixinhas mudar
-document.getElementById('qtd1').addEventListener('input', totalizar);
-document.getElementById('qtd2').addEventListener('input', totalizar);
-document.getElementById('qtd3').addEventListener('input', totalizar);
-document.getElementById('qtd4').addEventListener('input', totalizar);
-
-// Executa uma vez ao abrir a página para carregar os valores iniciais na tela
-totalizar();
-
-    function calcularfrete (){
-        let cep1 = document.getElementById ('cep1');
-        let cep2 = document.getElementById ('cep2');
-        let cep3 = document.getElementById ('cep3');
-        let f1 = document.getElementById ('f1');
-        let f2 = document.getElementById ('f2')
-        let f3 = document.getElementById ('f3');
-
-        var Vfrete1=0
-        var Vfrete2=0
-        var Vfrete3=0
-    
-        if (cep1.value ==="88495000") {
-            Vfrete1 = f1;
-            //alert ("to passando aqui 1");
-        }else if (cep1.value === "88780000" ){
-            Vfrete1 = f2; 
-            //alert ("to passando aqui 2");
-        }else if (cep1.value === "88490000"){
-            Vfrete1 = f3;
-            //alert ("to passando aqui 3");
-        }
-        else{
-            Vfrete1= 0;
-        }
-
-        if (cep2.value ==="88495000") {
-            Vfrete2 = f1;
-            //alert ("to passando aqui 1");
-        }else if (cep2.value === "88780000" ){
-            Vfrete2 = f2; 
-            //alert ("to passando aqui 2");
-        }else if (cep2.value === "88490000"){
-            Vfrete2 = f3;
-            //alert ("to passando aqui 3");
-        } 
-        else{
-            Vfrete2= 0;
-        }
-
-        if (cep3.value ==="88495000") {
-            Vfrete3 = f1;
-            //alert ("to passando aqui 1");
-        }else if (cep3.value === "88780000" ){
-            Vfrete3 = f2; 
-            //alert ("to passando aqui 2");
-        }else if (cep3.value === "88490000"){
-            Vfrete3 = f3;
-            //alert ("to passando aqui 3");
-        } 
-        else{
-            Vfrete3= 0;
-        }
-
-        f1.innerHTML = Vfrete1
-        f2.innerHTML = Vfrete2
-        f3.innerHTML = Vfrete3
+    // Se n tiver na pagina do carrinho
+    if(!qtd1 || !qtd2 || !qtd3 || !qtd4){
+        return;
     }
 
-calcularfrete()
+    // calcula os preços
+    const p1 = Number(qtd1.value) * v1;
 
-function totalizartudo () {
+    const p2 = Number(qtd2.value) * v2;
 
-    let totalTotal = document.getElementById ('totalTotal');
-    totalTotal.innerHTML = (p1)+(p2)+(p3)+Vfrete1+Vfrete2+Vfrete3;
-    alert (totalTotal.innerHTML);
+    const p3 = Number(qtd3.value) * v3;
+
+    const p4 = Number(qtd4.value) * v4;
+
+    // mostra os totais
+    const total1 = document.getElementById("total1");
+    const total2 = document.getElementById("total2");
+    const total3 = document.getElementById("total3");
+    const total4 = document.getElementById("total4");
+
+    if(total1){
+        total1.textContent = "Preço total: R$ " + p1.toFixed(2).replace(".", ",");
+    }
+
+    if(total2){
+        total2.textContent = "Preço total: R$ " + p2.toFixed(2).replace(".", ",");
+    }
+
+    if(total3){
+        total3.textContent = "Preço total: R$ " + p3.toFixed(2).replace(".", ",");
+    }
+
+    if(total4){
+        total4.textContent = "Preço total: R$ " + p4.toFixed(2).replace(".", ",");
+    }
+
+    return {p1, p2, p3, p4};
 }
 
-totalizartudo()
+const qtd1 = document.getElementById("qtd1");
+
+const qtd2 = document.getElementById("qtd2");
+
+const qtd3 = document.getElementById("qtd3");
+
+const qtd4 = document.getElementById("qtd4");
+
+if(qtd1){
+    qtd1.addEventListener( "input", totalizar);
+}
+
+if(qtd2){
+    qtd2.addEventListener( "input", totalizar);
+}
+
+if(qtd3){
+    qtd3.addEventListener( "input", totalizar);
+}
+
+if(qtd4){
+    qtd4.addEventListener( "input", totalizar);
+}
+
+function calcularfrete() {
+
+    const cep1 = document.getElementById("cep1");
+    const cep2 = document.getElementById("cep2");
+    const cep3 = document.getElementById("cep3");
+    const elementoFrete1 = document.getElementById("f1");
+    const elementoFrete2 = document.getElementById("f2");
+    const elementoFrete3 = document.getElementById("f3");
+
+    // se n tiver no carrinho
+    if( !cep1 || !cep2 || !cep3 || !elementoFrete1 || !elementoFrete2 || !elementoFrete3
+    ){
+        return;
+    }
+
+    let valorFrete1 = 0;
+    let valorFrete2 = 0;
+    let valorFrete3 = 0;
+
+    // CEP 1
+    if(cep1.value === "88495000"){
+
+        valorFrete1 = frete1;
+
+    }else if(cep1.value === "88780000"){
+
+        valorFrete1 = frete2;
+
+    }else if(cep1.value === "88490000"){
+
+        valorFrete1 = frete3;
+
+    }
+
+    // CEP 2
+    if(cep2.value === "88495000"){
+
+        valorFrete2 = frete1;
+
+    }else if(cep2.value === "88780000"){
+
+        valorFrete2 = frete2;
+
+    }else if(cep2.value === "88490000"){
+
+        valorFrete2 = frete3;
+
+    }
+
+    // CEP 3
+    if(cep3.value === "88495000"){
+
+        valorFrete3 = frete1;
+
+    }else if(cep3.value === "88780000"){
+
+        valorFrete3 = frete2;
+
+    }else if(cep3.value === "88490000"){
+
+        valorFrete3 = frete3;
+    }
+
+    // mostra os fretes
+    elementoFrete1.textContent = "Frete: R$ " + valorFrete1.toFixed(2).replace(".", ",");
+
+    elementoFrete2.textContent = "Frete: R$ " + valorFrete2.toFixed(2).replace(".", ",");
+
+    elementoFrete3.textContent = "Frete: R$ " + valorFrete3.toFixed(2).replace(".", ",");
+
+    return { valorFrete1, valorFrete2, valorFrete3
+    };
+}
+
+
+function totalizartudo(){
+
+    const totalTotal = document.getElementById("totalTotal");
+
+    // Se n tiver na pagina do carrinho
+    if (!totalTotal) {
+        return;
+    }
+
+    // calcula produtos
+    const produtos = totalizar();
+
+    // calcula fretes
+    const fretes = calcularfrete();
+
+    // se alguma funçao n puder calcular
+    if(!produtos || !fretes){
+        return;
+    }
+
+    // soma tudo
+    const total = produtos.p1 + produtos.p2 + produtos.p3 + produtos.p4 + fretes.valorFrete1 + fretes.valorFrete2 + fretes.valorFrete3;
+
+    // mostra o total
+    totalTotal.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
+}
+
+if( document.getElementById("qtd1") || document.getElementById("qtd2") || document.getElementById("qtd3") || document.getElementById("qtd4")){
+
+    totalizar();
+    calcularfrete();
+    totalizartudo();
+
+}
 
