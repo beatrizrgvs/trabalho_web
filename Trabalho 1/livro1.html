@@ -53,7 +53,7 @@
 
 <div class="produto_detalhes">
 
-    <img class="foto" src="orgulho-e-preconceito.jpg" alt="orgulho-e-preconceito">
+    <img id="imagem_produto" class="foto" src="orgulho-e-preconceito.jpg" alt="orgulho-e-preconceito">
 
     <ul>
 
@@ -79,7 +79,7 @@
 
         <li>
             <label for="qnt">Quantidade:</label>
-            <input id="qnt" type="number" name="qnt" min="1" max="10" step="1">
+            <input id="qnt" type="number" name="qnt" min="1" max="10" step="1" value="1">
         </li>
 
         <li>
@@ -93,13 +93,13 @@
             </select>
         </li>
 
-        <li id="total_preco">Preço total: R$00,00</li>
+        <li id="total_preco">Preço total: R$ 42,99</li>
 
     </ul>
 </div>
 
 <div class="button" id="botao_comprar">
-    <button type="button">Adicionar ao carrinho</button>
+    <button type="button" onClick="add_carrinho()">Adicionar ao carrinho</button>
 </div>
 
 <p class="descricao_avaliacao">Descrição e detalhes do produto</p>

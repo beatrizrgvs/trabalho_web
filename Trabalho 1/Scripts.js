@@ -62,7 +62,6 @@ function verificar(event) {
         return;
     }
 
-
     // cria o objeto do usuario
     const dadosUsuario = {
         nome: nome,
@@ -73,8 +72,7 @@ function verificar(event) {
         email: email
     };
 
-
-    // adiciona o novo usuário
+    // adiciona o novo usuario
     usuarios.push(dadosUsuario);
 
     // salva todos os usuarios
@@ -145,7 +143,7 @@ if (formLogin){
 
             erroDiv.style.display = "none";
 
-            // guarda o usuario que está logado
+            // guarda o usuario que ta logado
             localStorage.setItem(
                 "usuarioLogado", JSON.stringify(usuario));
 
@@ -157,16 +155,13 @@ if (formLogin){
 
         // login incorreto
         else{
-
             erroDiv.innerHTML = "<p>Erro: Login ou senha incorretos!</p>";
             erroDiv.style.display = "block";
 
             divs.forEach(div => {
                 div.style.paddingLeft = "50px";
             });
-
         }
-
     });
 
 }
@@ -179,7 +174,7 @@ function mudar_preco(){
     const precoVistaElemento = document.getElementById("preco_vista");
     const totalPrecoElemento = document.getElementById("total_preco");
 
-    // Se n tiver na p\gina do produto, n faz nada
+    // se n tiver na p\gina do produto, n faz nada
     if( !campoQnt || !precoVistaElemento || !totalPrecoElemento
     ){
         return;
@@ -191,7 +186,7 @@ function mudar_preco(){
     // pega o texto do preço
     const texto = precoVistaElemento.textContent;
 
-    // converte o preço para número
+    // converte o preço para numero
     const precoVista =
         Number(
             texto
@@ -214,7 +209,144 @@ if(campoQnt){
     campoQnt.addEventListener("input", mudar_preco);
 }
 
+function add_carrinho(){
+
+    const campoQnt = document.getElementById("qnt");
+    const precoVista = document.getElementById("preco_vista");
+    const totalPreco = document.getElementById("total_preco");
+    const nomeProduto = document.getElementById("produto_nome_detalhes");
+    const imagemProduto = document.getElementById("imagem_produto");
+
+    const qnt = Number(campoQnt.value);
+    const precoUn = Number(
+        precoVista.textContent
+            .replace("Preço à vista: R$", "")
+            .replace(",", ".")
+            .trim()
+    );
+
+    const precoTotal = precoUn * qnt;
+
+    totalPreco.textContent = `Preço total: R$ ${precoTotal.toFixed(2).replace(".", ",")}`;
+
+    const nome = nomeProduto.textContent.trim();
+    const imagem = imagemProduto.getAttribute("src");
+    const dadosProduto = {
+        nome: nome,
+        imagem: imagem,
+        qnt: qnt,
+        precoUn: precoUn,
+        precoTotal: precoTotal
+    };
+
+    let produtos = JSON.parse(localStorage.getItem("dadosProdutos")) || [];
+
+    produtos.push(dadosProduto);
+
+    localStorage.setItem("dadosProdutos", JSON.stringify(produtos));
+
+    alert("Produto adicionado ao carrinho!");
+}
+
 /* \\\\Carrinho\\\\ */
+
+function mostrarCarrinho() {
+
+    const listaCarrinho = document.getElementById("lista_carrinho");
+
+    // se n tiver na pagina do carrinho n faz nada
+    if (!listaCarrinho) {
+        return;
+    }
+
+    // pega os produtos salvos
+    const produtos = JSON.parse(localStorage.getItem("dadosProdutos")) || [];
+
+    // se n tiver nenhum produto
+    if (produtos.length === 0) {
+
+        listaCarrinho.innerHTML = `
+            <p>Seu carrinho está vazio.</p>
+        `;
+
+        return;
+    }
+
+    // limpa o carrinho antes de colocar os produtos
+    listaCarrinho.innerHTML = "";
+
+    // cria cada produto
+    produtos.forEach(function(produto, index) {
+
+        const item = document.createElement("div");
+
+        item.className = "item";
+
+        item.innerHTML = `
+
+            <img class="foto" src="${produto.imagem}" alt="${produto.nome}">
+
+            <ul>
+
+                <li class="produto_nome_carrinho">
+                    ${produto.nome}
+                </li>
+
+                <li class="produto_qnt">
+                    <label for="qtd${index}">
+                        Quantidade:
+                    </label>
+
+                    <input type="number" id="qtd${index}" value="${produto.qnt}" min="0">
+
+                </li>
+
+                <li>
+                    Preço unitário: R$ ${produto.precoUn.toFixed(2).replace(".", ",")}
+                </li>
+
+                <div class="total-container">
+
+                    <span>
+                        Preço total:
+                    </span>
+
+                    <span id="total${index}">
+                        R$ ${produto.precoTotal.toFixed(2).replace(".", ",")}
+                    </span>
+
+                </div>
+
+                <div class="frete-container">
+
+                    <span>
+                        CEP:
+                    </span>
+
+                    <input type="text" id="cep${index}" placeholder="Digite o CEP" maxlength="8">
+
+                </div>
+
+                <div class="total-container">
+
+                    <span>
+                        Preço total (incluindo frete):
+                    </span>
+
+                    <span>
+                        R$ ${produto.precoTotal.toFixed(2).replace(".", ",")}
+                    </span>
+
+                </div>
+            </ul>
+        `;
+
+        listaCarrinho.appendChild(item);
+
+    });
+}
+
+mostrarCarrinho();
 
 // preços dos produtos
 const v1 = 42.99;

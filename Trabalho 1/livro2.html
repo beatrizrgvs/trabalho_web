@@ -49,12 +49,12 @@
 
 <div class="produto_detalhes">
             
-    <img class="foto" src=pequenoprincipe.jpg alt="pequenoprincipe">
+    <img id="imagem_produto" class="foto" src=pequenoprincipe.jpg alt="pequenoprincipe">
 
     <ul>
         <li id="produto_nome_detalhes"> O pequeno príncipe </li> 
 
-        <li> Preço à vista: R$ 19,90 </li>
+        <li id="preco_vista"> Preço à vista: R$ 19,90 </li>
 
         <li>
             <label for="parcelas">Preço parcelado (até 5 vezes):</label>
@@ -74,7 +74,7 @@
 
         <li>
             <label for="qnt">Quantidade:</label>
-            <input id="qnt" type="number" name="qnt" min="1" max="10" step="1">
+            <input id="qnt" type="number" name="qnt" min="1" max="10" step="1" value="1">
         </li>
 
         <li>
@@ -87,11 +87,14 @@
                 <option value="boleto">Boleto bancário</option>
             </select>
         </li>
+
+        <li id="total_preco">Preço total: R$ 19,90</li>
+
     </ul>
 </div>
 
 <div class="button" id="botao_comprar">
-    <button type="submit"> Adicionar ao carrinho </button>
+    <button type="button" onClick="add_carrinho()">Adicionar ao carrinho</button>
 </div>
 
 <p class="descricao_avaliacao">Descrição e detalhes do produto</p>
