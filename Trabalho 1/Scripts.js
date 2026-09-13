@@ -1,4 +1,4 @@
-* \\\\Footer\\\\ */
+/* \\\\Footer\\\\ */
 
 const currentYear = document.getElementById("current-year");
 
@@ -312,6 +312,9 @@ function add_carrinho(){
 
 /* \\\\Carrinho\\\\ */
 
+let descontoAplicado = false;
+let freteGratis = false;
+
 function calcularTotalCarrinho() {
 
     const subtotalElemento = document.getElementById("subtotal");
@@ -360,8 +363,26 @@ function calcularTotalCarrinho() {
     }
 
 
-    //calcula o total
-    const total = subtotal + frete;
+    let desconto = 0;
+
+    if (descontoAplicado) {
+
+        desconto = subtotal * 0.10;
+
+    }
+
+
+    // frete grátis
+    if (freteGratis) {
+
+        frete = 0;
+
+    }
+
+
+    // calcula o total
+    const total = subtotal + frete - desconto;
+    
 
 
     // Mostra subtotal
@@ -370,6 +391,15 @@ function calcularTotalCarrinho() {
 
     // Mostra frete
     freteElemento.textContent =`R$ ${frete.toFixed(2).replace(".", ",")}`;
+
+    // Mostra desconto
+    const descontoElemento = document.getElementById("desconto");
+
+    if (descontoElemento) {
+
+        descontoElemento.textContent = `- R$ ${desconto.toFixed(2).replace(".", ",")}`;
+
+    }
 
 
     // Mostra total
@@ -553,6 +583,55 @@ function limparCarrinho() {
         });
 
     }
+    
+
+
+function aplicarCupom() {
+
+    const campoCupom = document.getElementById("cupom");
+    const mensagemCupom = document.getElementById("mensagem-cupom");
+
+    if (!campoCupom || !mensagemCupom) {
+        return;
+    }
+
+    //transforma em letra maiuscula
+    const cupom = campoCupom.value.trim().toUpperCase();
+
+    if (cupom === "DESCONTO10") {
+
+        descontoAplicado = true;
+
+        mensagemCupom.textContent = "Cupom de 10% aplicado!";
+
+        mensagemCupom.style.color = "green";
+
+    } else if (cupom === "FRETEGRATIS") {
+
+        freteGratis = true;
+
+        mensagemCupom.textContent ="Cupom de frete grátis aplicado!";
+        mensagemCupom.style.color = "green";
+
+    } else {
+
+        mensagemCupom.textContent = "Cupom inválido.";
+        mensagemCupom.style.color = "red";
+    }
+
+    campoCupom.value = "";
+
+    calcularTotalCarrinho();
+}
+
+    const botaoCupom = document.getElementById("aplicarCupom");
+
+    if (botaoCupom) {
+        botaoCupom.addEventListener("click", function() {
+            aplicarCupom();
+        });
+    }
+
 
     //nossos produtos
     const produtos = [
@@ -622,7 +701,7 @@ function limparCarrinho() {
                     window.location.href = produto.pagina;
 
                 });
-                
+
                 // adiciona a sugestão na area de sugestoes
                 sugestoes.appendChild(sugestao);
 
