@@ -22,10 +22,49 @@ function verificar(event) {
     const erroDiv = document.getElementById("mensagem-erro");
     const divs = document.querySelectorAll(".login-cadastro #campo");
 
-    // verifica se algum campo ta vazio
-    if(nome === "" || login === "" || senha === "" || cpf === "" || data === "" || email === ""){
+    // lista dos campos que estão vazios
+    let camposVazios = [];
 
-        erroDiv.innerHTML = "<p>Erro: Todos os campos são obrigatórios!</p>";
+    if(nome === ""){
+        camposVazios.push("Nome");
+    }
+
+    if(login === ""){
+        camposVazios.push("Login");
+    }
+
+    if(senha === ""){
+        camposVazios.push("Senha");
+    }
+
+    if(cpf === ""){
+        camposVazios.push("CPF");
+    }
+
+    if(data === ""){
+        camposVazios.push("Data de nascimento");
+    }
+
+    if(email === ""){
+        camposVazios.push("E-mail");
+    }
+
+    // verifica se existe algum campo vazio
+    if(camposVazios.length > 0){
+
+        let mensagem;
+
+        if(camposVazios.length === 1){
+
+            mensagem = `Erro: O campo ${camposVazios[0]} é obrigatório!`;
+
+        }else{
+
+            mensagem = `Erro: Os campos ${camposVazios.join(", ")} são obrigatórios!`;
+
+        }
+
+        erroDiv.innerHTML = `<p>${mensagem}</p>`;
         erroDiv.style.display = "block";
 
         divs.forEach(div => {
@@ -250,12 +289,12 @@ function add_carrinho(){
 
 /* \\\\Carrinho\\\\ */
 
-function mostrarCarrinho() {
+function mostrarCarrinho(){
 
     const listaCarrinho = document.getElementById("lista_carrinho");
 
     // se n tiver na pagina do carrinho n faz nada
-    if (!listaCarrinho) {
+    if (!listaCarrinho){
         return;
     }
 
@@ -276,7 +315,7 @@ function mostrarCarrinho() {
     listaCarrinho.innerHTML = "";
 
     // cria cada produto
-    produtos.forEach(function(produto, index) {
+    produtos.forEach(function(produto, index){
 
         const item = document.createElement("div");
 
@@ -293,10 +332,8 @@ function mostrarCarrinho() {
                 </li>
 
                 <li class="produto_qnt">
-                    <label for="qtd${index}">
-                        Quantidade:
-                    </label>
 
+                    <label for="qtd${index}"> Quantidade: </label>
                     <input type="number" id="qtd${index}" value="${produto.qnt}" min="0">
 
                 </li>
@@ -307,35 +344,22 @@ function mostrarCarrinho() {
 
                 <div class="total-container">
 
-                    <span>
-                        Preço total:
-                    </span>
-
-                    <span id="total${index}">
-                        R$ ${produto.precoTotal.toFixed(2).replace(".", ",")}
-                    </span>
+                    <span> Preço total: </span>
+                    <span id="total${index}"> R$ ${produto.precoTotal.toFixed(2).replace(".", ",")} </span>
 
                 </div>
 
                 <div class="frete-container">
 
-                    <span>
-                        CEP:
-                    </span>
-
+                    <label for="cep${index}">CEP: </label>
                     <input type="text" id="cep${index}" placeholder="Digite o CEP" maxlength="8">
 
                 </div>
 
                 <div class="total-container">
 
-                    <span>
-                        Preço total (incluindo frete):
-                    </span>
-
-                    <span>
-                        R$ ${produto.precoTotal.toFixed(2).replace(".", ",")}
-                    </span>
+                    <span> Preço total (incluindo frete): </span>
+                    <span> R$ ${produto.precoTotal.toFixed(2).replace(".", ",")} </span>
 
                 </div>
             </ul>
