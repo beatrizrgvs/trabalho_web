@@ -86,6 +86,10 @@ function verificar(event) {
         erroDiv.innerHTML = "<p>Erro: Este login já está cadastrado!</p>";
         erroDiv.style.display = "block";
 
+        divs.forEach(div => {
+            div.style.paddingLeft = "55px";
+        });
+
         return;
     }
 
@@ -97,6 +101,10 @@ function verificar(event) {
     if (cpfExiste){
         erroDiv.innerHTML = "<p>Erro: Este CPF já está cadastrado!</p>";
         erroDiv.style.display = "block";
+
+        divs.forEach(div => {
+            div.style.paddingLeft = "55px";
+        });
 
         return;
     }
@@ -289,33 +297,139 @@ function add_carrinho(){
 
 /* \\\\Carrinho\\\\ */
 
-function mostrarCarrinho(){
+/* \\\\Carrinho\\\\ */
 
-    const listaCarrinho = document.getElementById("lista_carrinho");
+let descontoAplicado = false;
+let freteGratis = false;
 
-    // se n tiver na pagina do carrinho n faz nada
-    if (!listaCarrinho){
+function calcularTotalCarrinho() {
+
+    const subtotalElemento = document.getElementById("subtotal");
+    const freteElemento = document.getElementById("valor_frete");
+    const totalElemento = document.getElementById("totalTotal");
+    const campoCep = document.getElementById("cep");
+
+    // Se não estiver na página do carrinho
+    if (!subtotalElemento || !freteElemento || !totalElemento ||!campoCep
+    ) {
         return;
     }
 
-    // pega os produtos salvos
-    const produtos = JSON.parse(localStorage.getItem("dadosProdutos")) || [];
+    // Pega os produtos
+    const produtos = JSON.parse(
+        localStorage.getItem("dadosProdutos")
+    ) || [];
 
-    // se n tiver nenhum produto
+    // Calcula o subtotal de todos os produtos
+    let subtotal = 0;
+
+    produtos.forEach(function(produto) {
+
+        subtotal = subtotal + Number(produto.precoTotal);
+
+    });
+
+
+    const cep = campoCep.value.replace(/\D/g, ""); // essas coisinhas é pra transformar o cep em apenas numero pra caso ele seja escritp com tracinho, o \d é pra qualquer elemento e o g quer dizer global que vai percorrer a palavra toda e nao vai parar na primeira ocorrencia
+
+    let frete = 0;
+
+    //define os valores
+    if (cep === "88495000") {
+
+        frete = 5;
+
+    } else if (cep === "88780000") {
+
+        frete = 8;
+
+    } else if (cep === "88490000") {
+
+        frete = 10;
+
+    }
+
+
+    let desconto = 0;
+
+    if (descontoAplicado) {
+
+        desconto = subtotal * 0.10;
+
+    }
+
+
+    // frete grátis
+    if (freteGratis) {
+
+        frete = 0;
+
+    }
+
+
+    // calcula o total
+    const total = subtotal + frete - desconto;
+    
+
+
+    // Mostra subtotal
+    subtotalElemento.textContent = `R$ ${subtotal.toFixed(2).replace(".", ",")}`;
+
+
+    // Mostra frete
+    freteElemento.textContent =`R$ ${frete.toFixed(2).replace(".", ",")}`;
+
+    // Mostra desconto
+    const descontoElemento = document.getElementById("desconto");
+
+    if (descontoElemento) {
+
+        descontoElemento.textContent = `- R$ ${desconto.toFixed(2).replace(".", ",")}`;
+
+    }
+
+
+    // Mostra total
+    totalElemento.textContent = `R$ ${total.toFixed(2).replace(".", ",")}`;
+}
+
+    const campoCep = document.getElementById("cep");
+
+    if (campoCep) {
+
+        campoCep.addEventListener("input", function() {
+            calcularTotalCarrinho();
+        });
+
+    }
+
+function mostrarCarrinho() {
+
+    const listaCarrinho = document.getElementById("lista_carrinho");
+
+    // Se não estiver na página do carrinho
+    if (!listaCarrinho) {
+        return;
+    }
+
+    // Pega os produtos salvos
+    const produtos = JSON.parse(localStorage.getItem("dadosProdutos")    ) || [];
+
+    // se o carrinho ta vazio
     if (produtos.length === 0) {
 
         listaCarrinho.innerHTML = `
-            <p>Seu carrinho está vazio.</p>
+             <p class="carrinho-vazio">Seu carrinho está vazio.</p>
         `;
 
         return;
     }
 
-    // limpa o carrinho antes de colocar os produtos
+    // Limpa o carrinho
     listaCarrinho.innerHTML = "";
 
-    // cria cada produto
-    produtos.forEach(function(produto, index){
+    // Cria cada produto
+    produtos.forEach(function(produto, index) {
 
         const item = document.createElement("div");
 
@@ -323,7 +437,11 @@ function mostrarCarrinho(){
 
         item.innerHTML = `
 
-            <img class="foto" src="${produto.imagem}" alt="${produto.nome}">
+            <img
+                class="foto"
+                src="${produto.imagem}"
+                alt="${produto.nome}"
+            >
 
             <ul>
 
@@ -333,234 +451,248 @@ function mostrarCarrinho(){
 
                 <li class="produto_qnt">
 
-                    <label for="qtd${index}"> Quantidade: </label>
-                    <input type="number" id="qtd${index}" value="${produto.qnt}" min="0">
+                    <label for="qtd${index}">
+                        Quantidade:
+                    </label>
+
+                    <input
+                        type="number"
+                        id="qtd${index}"
+                        value="${produto.qnt}"
+                        min="1"
+                    >
 
                 </li>
 
                 <li>
-                    Preço unitário: R$ ${produto.precoUn.toFixed(2).replace(".", ",")}
+                    Preço unitário:
+                    R$ ${produto.precoUn.toFixed(2).replace(".", ",")}
                 </li>
 
                 <div class="total-container">
 
-                    <span> Preço total: </span>
-                    <span id="total${index}"> R$ ${produto.precoTotal.toFixed(2).replace(".", ",")} </span>
+                    <span>
+                        Preço total:
+                    </span>
+
+                    <span id="total${index}">
+                        R$ ${produto.precoTotal.toFixed(2).replace(".", ",")}
+                    </span>
 
                 </div>
 
-                <div class="frete-container">
-
-                    <label for="cep${index}">CEP: </label>
-                    <input type="text" id="cep${index}" placeholder="Digite o CEP" maxlength="8">
-
-                </div>
-
-                <div class="total-container">
-
-                    <span> Preço total (incluindo frete): </span>
-                    <span> R$ ${produto.precoTotal.toFixed(2).replace(".", ",")} </span>
-
-                </div>
             </ul>
         `;
 
         listaCarrinho.appendChild(item);
 
+
+        // Campo de quantidade
+        const campoQuantidade = document.getElementById(`qtd${index}`);
+
+        // Campo do preço total
+        const campoTotal =document.getElementById(`total${index}`);
+
+
+        // Quando mudar a quantidade
+        campoQuantidade.addEventListener("input", function() {
+
+            let novaQuantidade = Number(campoQuantidade.value);
+
+            // isso aqui nao permite quantidade menor que 1
+            if (novaQuantidade < 1 || isNaN(novaQuantidade)) {
+                novaQuantidade = 1;
+                campoQuantidade.value = 1;
+            }
+
+            // Calcula o novo total
+            const novoTotal =produto.precoUn * novaQuantidade;
+
+            // Mostra o novo total
+            campoTotal.textContent =`R$ ${novoTotal.toFixed(2).replace(".", ",")}`;
+
+            // Atualiza o produto
+            produto.qnt = novaQuantidade;
+            produto.precoTotal = novoTotal;
+
+            // Salva no localStorage
+            localStorage.setItem(
+                "dadosProdutos",
+                JSON.stringify(produtos)
+            );
+
+            calcularTotalCarrinho();
+        });
+        
+    });
+}
+mostrarCarrinho()
+
+calcularTotalCarrinho();
+
+
+function limparCarrinho() {
+
+    // Apaga os produtos do carrinho
+    localStorage.removeItem("dadosProdutos");
+
+    // Atualiza a lista na tela
+    const listaCarrinho = document.getElementById("lista_carrinho");
+
+    if (listaCarrinho) {
+        listaCarrinho.innerHTML = `
+            <p>Seu carrinho está vazio.</p>
+        `;
+    }
+}
+
+
+const botaoLimpar = document.getElementById("LimparCarrinho");
+
+if (botaoLimpar) {
+
+    botaoLimpar.addEventListener("click", function() {
+
+        // Apaga os produtos salvos no carrinho
+        localStorage.removeItem("dadosProdutos");
+
+        // Pega a área do carrinho
+        const listaCarrinho = document.getElementById("lista_carrinho");
+
+        // Mostra carrinho vazio
+        if (listaCarrinho) {
+            listaCarrinho.innerHTML = `
+                <p class="carrinho-vazio">Seu carrinho está vazio.</p>
+            `;
+        }
+        calcularTotalCarrinho();
+
+
+    });
+
+}
+    
+function aplicarCupom() {
+
+    const campoCupom = document.getElementById("cupom");
+    const mensagemCupom = document.getElementById("mensagem-cupom");
+
+    if (!campoCupom || !mensagemCupom) {
+        return;
+    }
+
+    //transforma em letra maiuscula
+    const cupom = campoCupom.value.trim().toUpperCase();
+
+    if (cupom === "DESCONTO10") {
+
+        descontoAplicado = true;
+
+        mensagemCupom.textContent = "Cupom de 10% aplicado!";
+
+        mensagemCupom.style.color = "green";
+
+    } else if (cupom === "FRETEGRATIS") {
+
+        freteGratis = true;
+
+        mensagemCupom.textContent ="Cupom de frete grátis aplicado!";
+        mensagemCupom.style.color = "green";
+
+    } else {
+
+        mensagemCupom.textContent = "Cupom inválido.";
+        mensagemCupom.style.color = "red";
+    }
+
+    campoCupom.value = "";
+
+    calcularTotalCarrinho();
+}
+
+const botaoCupom = document.getElementById("aplicarCupom");
+
+if (botaoCupom) {
+    botaoCupom.addEventListener("click", function() {
+        aplicarCupom();
     });
 }
 
-mostrarCarrinho();
 
-// preços dos produtos
-const v1 = 42.99;
-const v2 = 19.90;
-const v3 = 54.02;
-const v4 = 69.90;
+//nossos produtos
+const produtos = [
+    { nome: "Orgulho e Preconceito", pagina: "livro1.html" },
+    { nome: "O Pequeno Príncipe", pagina: "livro2.html" },
+    { nome: "1984", pagina: "livro3.html" },
+    { nome: "Cem Anos de Solidão", pagina: "livro4.html" },
+    { nome: "A Metamorfose", pagina: "livro5.html" },
+    { nome: "Frankenstein", pagina: "livro6.html" },
+    { nome: "Dom Casmurro", pagina: "livro7.html" },
+    { nome: "Dom Quixote", pagina: "livro8.html" }
+];
 
+const campoBusca = document.getElementById("busca");
+const sugestoes = document.getElementById("sugestoes");
 
-// valores dos fretes
-const frete1 = 5;
-const frete2 = 8;
-const frete3 = 10;
+if (campoBusca && sugestoes) {
 
-function totalizar() {
+    campoBusca.addEventListener("input", function() {
 
-    const qtd1 = document.getElementById("qtd1");
-    const qtd2 = document.getElementById("qtd2");
-    const qtd3 = document.getElementById("qtd3");
-    const qtd4 = document.getElementById("qtd4");
+        //pega o texto digitado, transforma tudo em letras minusculas e remove espaços desnecessarios
+        const texto = campoBusca.value.toLowerCase().trim();
 
-    // Se n tiver na pagina do carrinho
-    if(!qtd1 || !qtd2 || !qtd3 || !qtd4){
-        return;
-    }
+        sugestoes.innerHTML = "";
 
-    // calcula os preços
-    const p1 = Number(qtd1.value) * v1;
+        if (texto === "") {
+            return;
+        }
 
-    const p2 = Number(qtd2.value) * v2;
+        //procura nos produtos algo que corresponde ao que foi digitado
+        const resultados = produtos.filter(function(produto) {
 
-    const p3 = Number(qtd3.value) * v3;
+            //divide o que o usuário digitou em palavras
+            const palavrasDigitadas = texto.split(" ");
 
-    const p4 = Number(qtd4.value) * v4;
+            const palavrasProduto = produto.nome.toLowerCase().split(" ");
 
-    // mostra os totais
-    const total1 = document.getElementById("total1");
-    const total2 = document.getElementById("total2");
-    const total3 = document.getElementById("total3");
-    const total4 = document.getElementById("total4");
+            // verifica se todas as palavras digitadas correspondem ao começo de alguma palavra do produto
+            return palavrasDigitadas.every(function(palavraDigitada) {
 
-    if(total1){
-        total1.textContent = "Preço total: R$ " + p1.toFixed(2).replace(".", ",");
-    }
+                return palavrasProduto.some(function(palavraProduto) {
 
-    if(total2){
-        total2.textContent = "Preço total: R$ " + p2.toFixed(2).replace(".", ",");
-    }
+                    //Verifica se a palavra do produto começa com o que foi digitado
+                    return palavraProduto.startsWith(palavraDigitada);
 
-    if(total3){
-        total3.textContent = "Preço total: R$ " + p3.toFixed(2).replace(".", ",");
-    }
+                });
 
-    if(total4){
-        total4.textContent = "Preço total: R$ " + p4.toFixed(2).replace(".", ",");
-    }
+            });
 
-    return {p1, p2, p3, p4};
-}
+        });
 
-const qtd1 = document.getElementById("qtd1");
+        // cria uma sugestão p cada produto encontrado
+        resultados.forEach(function(produto) {
 
-const qtd2 = document.getElementById("qtd2");
+            // cria uma div p mostrar a sugestão
+            const sugestao = document.createElement("div");
 
-const qtd3 = document.getElementById("qtd3");
+            //coloca o nome do livro dentro da sugestao
+            sugestao.textContent = produto.nome;
 
-const qtd4 = document.getElementById("qtd4");
+            // adiciona a classe css da sugestão
+            sugestao.classList.add("sugestao");
 
-if(qtd1){
-    qtd1.addEventListener( "input", totalizar);
-}
+            //// quando o clicar na sugestão, vai para a pag daquele livro
+            sugestao.addEventListener("click", function() {
 
-if(qtd2){
-    qtd2.addEventListener( "input", totalizar);
-}
+                window.location.href = produto.pagina;
 
-if(qtd3){
-    qtd3.addEventListener( "input", totalizar);
-}
+            });
 
-if(qtd4){
-    qtd4.addEventListener( "input", totalizar);
-}
+            // adiciona a sugestão na area de sugestoes
+            sugestoes.appendChild(sugestao);
 
-function calcularfrete() {
+        });
 
-    const cep1 = document.getElementById("cep1");
-    const cep2 = document.getElementById("cep2");
-    const cep3 = document.getElementById("cep3");
-    const elementoFrete1 = document.getElementById("f1");
-    const elementoFrete2 = document.getElementById("f2");
-    const elementoFrete3 = document.getElementById("f3");
-
-    // se n tiver no carrinho
-    if( !cep1 || !cep2 || !cep3 || !elementoFrete1 || !elementoFrete2 || !elementoFrete3
-    ){
-        return;
-    }
-
-    let valorFrete1 = 0;
-    let valorFrete2 = 0;
-    let valorFrete3 = 0;
-
-    // CEP 1
-    if(cep1.value === "88495000"){
-
-        valorFrete1 = frete1;
-
-    }else if(cep1.value === "88780000"){
-
-        valorFrete1 = frete2;
-
-    }else if(cep1.value === "88490000"){
-
-        valorFrete1 = frete3;
-
-    }
-
-    // CEP 2
-    if(cep2.value === "88495000"){
-
-        valorFrete2 = frete1;
-
-    }else if(cep2.value === "88780000"){
-
-        valorFrete2 = frete2;
-
-    }else if(cep2.value === "88490000"){
-
-        valorFrete2 = frete3;
-
-    }
-
-    // CEP 3
-    if(cep3.value === "88495000"){
-
-        valorFrete3 = frete1;
-
-    }else if(cep3.value === "88780000"){
-
-        valorFrete3 = frete2;
-
-    }else if(cep3.value === "88490000"){
-
-        valorFrete3 = frete3;
-    }
-
-    // mostra os fretes
-    elementoFrete1.textContent = "Frete: R$ " + valorFrete1.toFixed(2).replace(".", ",");
-
-    elementoFrete2.textContent = "Frete: R$ " + valorFrete2.toFixed(2).replace(".", ",");
-
-    elementoFrete3.textContent = "Frete: R$ " + valorFrete3.toFixed(2).replace(".", ",");
-
-    return { valorFrete1, valorFrete2, valorFrete3
-    };
-}
-
-
-function totalizartudo(){
-
-    const totalTotal = document.getElementById("totalTotal");
-
-    // Se n tiver na pagina do carrinho
-    if (!totalTotal) {
-        return;
-    }
-
-    // calcula produtos
-    const produtos = totalizar();
-
-    // calcula fretes
-    const fretes = calcularfrete();
-
-    // se alguma funçao n puder calcular
-    if(!produtos || !fretes){
-        return;
-    }
-
-    // soma tudo
-    const total = produtos.p1 + produtos.p2 + produtos.p3 + produtos.p4 + fretes.valorFrete1 + fretes.valorFrete2 + fretes.valorFrete3;
-
-    // mostra o total
-    totalTotal.textContent = "Total: R$ " + total.toFixed(2).replace(".", ",");
-}
-
-if( document.getElementById("qtd1") || document.getElementById("qtd2") || document.getElementById("qtd3") || document.getElementById("qtd4")){
-
-    totalizar();
-    calcularfrete();
-    totalizartudo();
+    });
 
 }
-
