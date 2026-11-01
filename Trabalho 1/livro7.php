@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -25,10 +26,13 @@
 
             <nav>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
-                    <li><a href="carrinho.html">Carrinho</a></li>
+                    <li><a href="index.php">Início</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="cadastro.php">Cadastro</a></li>
+                    <li><a href="carrinho.php">Carrinho</a></li>
+                    <?php if (isset($_SESSION["usuario_id"])) { ?>
+                    <li><a href="logout.php">Sair</a></li>
+                    <?php } ?>
                 </ul>
             </nav>
 

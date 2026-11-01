@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>O pequeno príncipe</title>
+    <title>Frankenstein ou, o Prometeu moderno</title>
 </head>
 
 <body>
@@ -25,10 +26,13 @@
 
             <nav>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
-                    <li><a href="carrinho.html">Carrinho</a></li>
+                    <li><a href="index.php">Início</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="cadastro.php">Cadastro</a></li>
+                    <li><a href="carrinho.php">Carrinho</a></li>
+                    <?php if (isset($_SESSION["usuario_id"])) { ?>
+                    <li><a href="logout.php">Sair</a></li>
+                    <?php } ?>
                 </ul>
             </nav>
 
@@ -44,17 +48,16 @@
     </div>
 </header>
 
-
 <h1 id="titulo_pagina">Detalhes do livro</h1>
 
 <div class="produto_detalhes">
             
-    <img id="imagem_produto" class="foto" src=pequenoprincipe.jpg alt="pequenoprincipe">
+    <img id="imagem_produto" class="foto" src=Frankenstein.jpg alt="Frankenstein">
 
     <ul>
-        <li id="produto_nome_detalhes"> O pequeno príncipe </li> 
+        <li id="produto_nome_detalhes"> Frankenstein ou, o Prometeu moderno </li> 
 
-        <li id="preco_vista"> Preço à vista: R$ 19,90 </li>
+        <li id="preco_vista"> Preço à vista: R$ 16,90 </li>
 
         <li>
             <label for="parcelas">Preço parcelado (até 5 vezes):</label>
@@ -87,8 +90,8 @@
                 <option value="boleto">Boleto bancário</option>
             </select>
         </li>
-
-        <li id="total_preco">Preço total: R$ 19,90</li>
+        
+        <li id="total_preco">Preço total: R$ 16,90</li>
 
     </ul>
 </div>
@@ -98,30 +101,30 @@
 </div>
 
 <p class="descricao_avaliacao">Descrição e detalhes do produto</p>
-<p class="descricao_texto">Nesta história que marcou gerações de leitores em todo o mundo, um piloto cai com seu avião no deserto do Saara e encontra um pequeno príncipe, que o leva a uma aventura filosófica e poética através de planetas que encerram a solidão humana. Um livro para todos os públicos, O pequeno príncipe é uma obra atemporal, com metáforas pertinentes e aprendizados sobre afeto, sonhos, esperança e tudo aquilo que é invisível aos olhos. </p>
+<p class="descricao_texto">Victor Frankenstein desde muito jovem se dedicou aos estudos da filosofia e das ciências naturais. Até que, em uma experiência bem-sucedida (que lhe sugou a energia e o afastou do convívio dos seus entes queridos), ele foi capaz de dar vida a um ser de feições e trejeitos assustadores. A partir de então, criador e criatura passam a viver um jogo de perseguição repleto de sangue e horror, a primeira obra de ficção científica da literatura e um clássico do terror.</p>
 
 <table class="tabela_detalhes">
 
     <tr>
 
         <th>Editora:</th>
-        <td>Clássicos Zahar</td>
+        <td>Principis</td>
 
     </tr>
 
     <tr>
 
         <th>Ano da edição:</th>
-        <td>2015</td>
+        <td>2019</td>
 
     </tr>
 
     <tr>
 
         <th>ISBN:</th>
-        <td>9788537814741</td>
+        <td>8594318111</td>
         
-    </tr>
+    </tr>   
 
     <tr>
 
@@ -133,7 +136,7 @@
     <tr>
 
         <th>Número de paginas:</th>
-        <td>133 páginas</td>
+        <td>240 páginas</td>
         
     </tr>
 

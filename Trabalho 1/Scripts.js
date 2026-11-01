@@ -6,6 +6,21 @@ if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
 }
 
+/* \\\\Erros que vem do PHP\\\\ */
+
+function exibirErroPHP(mensagem, espaco) {
+
+    const erroDiv = document.getElementById("mensagem-erro");
+    const divs = document.querySelectorAll(".login-cadastro #campo");
+
+    erroDiv.innerHTML = `<p>Erro: ${mensagem}</p>`;
+    erroDiv.style.display = "block";
+
+    divs.forEach(div => {
+        div.style.paddingLeft = espaco + "px";
+    });
+}
+
 /* \\\\Pagina de cadastro\\\\ */
 
 function verificar(event) {
@@ -74,61 +89,8 @@ function verificar(event) {
         return;
     }
 
-    // pega os usuarios cadastrados
-    let usuarios = JSON.parse(localStorage.getItem("cadastroUsuarios")) || [];
-
-    // verifica se o login ja existe
-    const loginExiste = usuarios.find(function(usuario){
-        return usuario.login === login;
-    });
-
-    if (loginExiste){
-        erroDiv.innerHTML = "<p>Erro: Este login já está cadastrado!</p>";
-        erroDiv.style.display = "block";
-
-        divs.forEach(div => {
-            div.style.paddingLeft = "55px";
-        });
-
-        return;
-    }
-
-    // verifica se o cpf ja existe
-    const cpfExiste = usuarios.find(function(usuario) {
-        return usuario.cpf === cpf;
-    });
-
-    if (cpfExiste){
-        erroDiv.innerHTML = "<p>Erro: Este CPF já está cadastrado!</p>";
-        erroDiv.style.display = "block";
-
-        divs.forEach(div => {
-            div.style.paddingLeft = "55px";
-        });
-
-        return;
-    }
-
-    // cria o objeto do usuario
-    const dadosUsuario = {
-        nome: nome,
-        login: login,
-        senhaUsuario: senha,
-        cpf: cpf,
-        dataNascimento: data,
-        email: email
-    };
-
-    // adiciona o novo usuario
-    usuarios.push(dadosUsuario);
-
-    // salva todos os usuarios
-    localStorage.setItem("cadastroUsuarios",JSON.stringify(usuarios));
-
-    alert("Cadastro realizado com sucesso!");
-
-    // vai pro login
-    window.location.href = "login.html";
+    // envia o formulario para o PHP 
+    event.target.submit();
 }
 
 /* \\\\pagina de login\\\\ */
@@ -159,56 +121,8 @@ if (formLogin){
             return;
         }
 
-        // procura os usuarios
-        const textoSalvo = localStorage.getItem("cadastroUsuarios");
-
-        // nenhum usuario cadastrado
-        if (textoSalvo === null){
-
-            erroDiv.innerHTML = "<p>Erro: Nenhum usuário cadastrado neste navegador!</p>";
-            erroDiv.style.display = "block";
-
-            divs.forEach(div => {
-                div.style.paddingLeft = "100px";
-            });
-
-            return;
-        }
-
-        // converte para array
-        const usuarios = JSON.parse(textoSalvo);
-
-        // procura usuario com login e senha
-        const usuario = usuarios.find(function(usuario){
-                return (
-                    usuario.login === login && usuario.senhaUsuario === senha
-                );
-            });
-
-        // login correto
-        if (usuario){
-
-            erroDiv.style.display = "none";
-
-            // guarda o usuario que ta logado
-            localStorage.setItem(
-                "usuarioLogado", JSON.stringify(usuario));
-
-            alert("Login realizado com sucesso!");
-
-            window.location.href = "index.html";
-
-        }
-
-        // login incorreto
-        else{
-            erroDiv.innerHTML = "<p>Erro: Login ou senha incorretos!</p>";
-            erroDiv.style.display = "block";
-
-            divs.forEach(div => {
-                div.style.paddingLeft = "50px";
-            });
-        }
+        // envia para o PHP conferir no banco
+        formLogin.submit();
     });
 
 }
@@ -621,14 +535,14 @@ if (botaoCupom) {
 
 //nossos produtos
 const produtos = [
-    { nome: "Orgulho e Preconceito", pagina: "livro1.html" },
-    { nome: "O Pequeno Príncipe", pagina: "livro2.html" },
-    { nome: "1984", pagina: "livro3.html" },
-    { nome: "Cem Anos de Solidão", pagina: "livro4.html" },
-    { nome: "A Metamorfose", pagina: "livro5.html" },
-    { nome: "Frankenstein", pagina: "livro6.html" },
-    { nome: "Dom Casmurro", pagina: "livro7.html" },
-    { nome: "Dom Quixote", pagina: "livro8.html" }
+    { nome: "Orgulho e Preconceito", pagina: "livro1.php" },
+    { nome: "O Pequeno Príncipe", pagina: "livro2.php" },
+    { nome: "1984", pagina: "livro3.php" },
+    { nome: "Cem Anos de Solidão", pagina: "livro4.php" },
+    { nome: "A Metamorfose", pagina: "livro5.php" },
+    { nome: "Frankenstein", pagina: "livro6.php" },
+    { nome: "Dom Casmurro", pagina: "livro7.php" },
+    { nome: "Dom Quixote", pagina: "livro8.php" }
 ];
 
 const campoBusca = document.getElementById("busca");

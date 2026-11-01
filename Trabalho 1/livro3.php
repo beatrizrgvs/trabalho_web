@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,9 +7,8 @@
     <link rel="stylesheet" href="Trabalho1.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Frankenstein ou, o Prometeu moderno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">   
+    <title>1984</title>
 </head>
 
 <body>
@@ -25,10 +25,13 @@
 
             <nav>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
-                    <li><a href="carrinho.html">Carrinho</a></li>
+                    <li><a href="index.php">Início</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="cadastro.php">Cadastro</a></li>
+                    <li><a href="carrinho.php">Carrinho</a></li>
+                    <?php if (isset($_SESSION["usuario_id"])) { ?>
+                    <li><a href="logout.php">Sair</a></li>
+                    <?php } ?>
                 </ul>
             </nav>
 
@@ -48,12 +51,12 @@
 
 <div class="produto_detalhes">
             
-    <img id="imagem_produto" class="foto" src=Frankenstein.jpg alt="Frankenstein">
+    <img id="imagem_produto" class="foto" src=1984.jpg alt="1984">
 
     <ul>
-        <li id="produto_nome_detalhes"> Frankenstein ou, o Prometeu moderno </li> 
+        <li id="produto_nome_detalhes"> 1984 </li> 
 
-        <li id="preco_vista"> Preço à vista: R$ 16,90 </li>
+        <li id="preco_vista"> Preço à vista: R$ 54,02 </li>
 
         <li>
             <label for="parcelas">Preço parcelado (até 5 vezes):</label>
@@ -86,8 +89,8 @@
                 <option value="boleto">Boleto bancário</option>
             </select>
         </li>
-        
-        <li id="total_preco">Preço total: R$ 16,90</li>
+
+        <li id="total_preco">Preço total: R$ 54,02</li>
 
     </ul>
 </div>
@@ -97,30 +100,30 @@
 </div>
 
 <p class="descricao_avaliacao">Descrição e detalhes do produto</p>
-<p class="descricao_texto">Victor Frankenstein desde muito jovem se dedicou aos estudos da filosofia e das ciências naturais. Até que, em uma experiência bem-sucedida (que lhe sugou a energia e o afastou do convívio dos seus entes queridos), ele foi capaz de dar vida a um ser de feições e trejeitos assustadores. A partir de então, criador e criatura passam a viver um jogo de perseguição repleto de sangue e horror, a primeira obra de ficção científica da literatura e um clássico do terror.</p>
+<p class="descricao_texto"> Winston Smith, número 6079, ocupa uma função comum no Departamento de Documentação: “retificar” fatos de acordo com as orientações do Ministério da Verdade. E ele não mede esforços em seu objetivo de erradicar, em todos os níveis, quaisquer elementos que ameacem sua existência. A individualidade, o livre-arbítrio, o pensamento crítico, o amor – todos considerados transgressões inadmissíveis – são punidos com o máximo de rigor e severidade. Nada escapa aos olhos do Grande Irmão, o grande líder do regime, e é por meio de sua vigilância intensiva, cujos “olhos eram capazes de o seguir (…) em moedas, estampas, capas de livros, bandeiras, pôsteres e invólucros de pacotes de cigarro”, que o regime se certifica milimetricamente da soberania de seu poder. Por outro lado, Winston se sente ávido por conhecer algum tipo de liberdade. Assim, pouco a pouco avança em seus atos de resistência em busca de reavivar sua humanidade, obliterada por décadas da repressão política incidente no mais profundo nível de seus pensamentos e lembranças. Entretanto, para realizar seu desejo ele precisará desviar cuidadosamente de um perigoso campo minado sob o escrutínio do Partido e do Grande Irmão. </p>
 
 <table class="tabela_detalhes">
 
     <tr>
 
         <th>Editora:</th>
-        <td>Principis</td>
+        <td>Excelsior</td>
 
     </tr>
 
     <tr>
 
         <th>Ano da edição:</th>
-        <td>2019</td>
+        <td>2021</td>
 
     </tr>
 
     <tr>
 
         <th>ISBN:</th>
-        <td>8594318111</td>
+        <td>978-6587435169</td>
         
-    </tr>   
+    </tr>
 
     <tr>
 
@@ -132,14 +135,14 @@
     <tr>
 
         <th>Número de paginas:</th>
-        <td>240 páginas</td>
+        <td>316 páginas</td>
         
     </tr>
 
     <tr>
 
         <th>Estilo de capa:</th>
-        <td>Comum</td>
+        <td>Dura</td>
         
     </tr>
 

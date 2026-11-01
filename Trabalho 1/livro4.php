@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,9 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>A metamorfose</title>
+    <title>Cem anos de solidão</title>
 </head>
-
 
 <body>
 
@@ -26,10 +26,13 @@
 
             <nav>
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="cadastro.html">Cadastro</a></li>
-                    <li><a href="carrinho.html">Carrinho</a></li>
+                    <li><a href="index.php">Início</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="cadastro.php">Cadastro</a></li>
+                    <li><a href="carrinho.php">Carrinho</a></li>
+                    <?php if (isset($_SESSION["usuario_id"])) { ?>
+                    <li><a href="logout.php">Sair</a></li>
+                    <?php } ?>
                 </ul>
             </nav>
 
@@ -49,12 +52,12 @@
 
 <div class="produto_detalhes">
             
-    <img id="imagem_produto" class="foto" src=metamorfose.jpg alt="metamorfose">
+    <img id="imagem_produto" class="foto" src=cemanos.jpg alt="cemanos">
 
     <ul>
-        <li id="produto_nome_detalhes"> A metamorfose </li> 
+        <li id="produto_nome_detalhes"> Cem anos de solidão </li> 
 
-        <li id="preco_vista"> Preço à vista: R$ 23,55 </li>
+        <li id="preco_vista"> Preço à vista: R$ 69,90 </li>
 
         <li>
             <label for="parcelas">Preço parcelado (até 5 vezes):</label>
@@ -88,7 +91,7 @@
             </select>
         </li>
 
-        <li id="total_preco">Preço total: R$ 23,55</li>
+        <li id="total_preco">Preço total: R$ 69,90</li>
 
     </ul>
 </div>
@@ -98,49 +101,49 @@
 </div>
 
 <p class="descricao_avaliacao">Descrição e detalhes do produto</p>
-<p class="descricao_texto">O caixeiro-viajante Gregor acorda metamorfoseado em um enorme inseto e percebe que tudo mudou e não só em sua vida, mas no mundo. Ele, então, acompanha as reações de sua família ao perceberem o estranho ser em que ele se tornou. E, enquanto luta para se manter vivo, reflete sobre o comportamento de seus pais, de sua irmã e sobre a sua nova vida.</p>
+<p class="descricao_texto">Em Cem anos de solidão , um dos maiores clássicos da literatura, o prestigiado autor narra a incrível e triste história dos Buendía - a estirpe de solitários para a qual não será dada “uma segunda oportunidade sobre a terra” e apresenta o maravilhoso universo da fictícia Macondo, onde se passa o romance. É lá que acompanhamos diversas gerações dessa família, assim como a ascensão e a queda do vilarejo.</p>
 
 <table class="tabela_detalhes">
 
     <tr>
 
         <th>Editora:</th>
-        <td>Principis</td>
+        <td>Record</td>
 
     </tr>
 
     <tr>
 
         <th>Ano da edição:</th>
-        <td>2019</td>
+        <td>1977</td>
 
     </tr>
 
     <tr>
 
         <th>ISBN:</th>
-        <td>8594318782</td>
+        <td>9788501012074</td>
         
     </tr>
 
     <tr>
 
         <th>Gênero:</th>
-        <td>Ficção</td>
+        <td>Fantasia</td>
         
     </tr>
 
     <tr>
 
         <th>Número de paginas:</th>
-        <td>96 páginas</td>
+        <td>448 páginas</td>
         
     </tr>
 
     <tr>
 
         <th>Estilo de capa:</th>
-        <td>Dura</td>
+        <td>Comum</td>
         
     </tr>
 
@@ -178,6 +181,7 @@
     </ul>
 
 </div>
+
 
 <footer>
     <div class="rodape-final">
