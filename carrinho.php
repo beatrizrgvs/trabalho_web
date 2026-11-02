@@ -1,0 +1,167 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="Trabalho1.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Felipa&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <title>Carrinho</title>
+</head>
+
+<body>
+
+<header>
+
+    <div class="menu">
+
+        <div class="nome">
+            <img src="logo.jpg" alt="logo" id="logo">
+            <h1 id="nome">Open Book</h1>
+        </div>
+
+        <div class="submenu-cima">
+
+            <nav>
+                <ul>
+                    <li><a href="index.php">Início</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="cadastro.php">Cadastro</a></li>
+                    <li><a href="carrinho.php">Carrinho</a></li>
+
+                    <?php if (isset($_SESSION["usuario_id"])) { ?>
+                        <li><a href="logout.php">Sair</a></li>
+                    <?php } ?>
+                </ul>
+            </nav>
+
+            <form>
+                <div class="caixa-busca">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="busca" name="q" placeholder="Pesquisar...">
+                    <div id="sugestoes"></div>
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</header>
+
+<h1 id="titulo_pagina">Carrinho</h1>
+
+<div class="todos_itens_carrinho">
+    <div class="organizacao_itens" id="lista_carrinho">
+
+    </div>
+</div>
+
+<div class="total-estilo">
+    <div class="frete-container">
+
+        <span>
+            CEP:
+        </span>
+
+        <input type="text" id="cep" placeholder="Digite o CEP" maxlength="8">
+
+    </div>
+
+    <div class="frete-container">
+
+        <span>
+            Frete:
+        </span>
+
+        <span id="valor_frete">
+            R$ 0,00
+        </span>
+
+    </div>
+
+    <div class="total-container">
+
+        <span>
+            Subtotal:
+        </span>
+
+        <span id="subtotal">
+            R$ 0,00
+        </span>
+
+    </div>
+
+    <div class="total-container">
+
+        <span>
+            Preço total (incluindo frete):
+        </span>
+
+        <span id="totalTotal">
+            R$ 0,00
+        </span>
+    </div>
+    
+    <div class="total-container">
+        <span>
+            Desconto:
+        </span>
+        <span id="desconto">
+            R$ 0,00
+        </span>
+
+    </div>
+
+    <div class="cupom">
+        <label for="cupom">Cupom de desconto:</label>
+
+        <input
+            type="text"
+            id="cupom"
+            placeholder="Digite seu cupom"
+        >
+
+        <button type="button" id="aplicarCupom">
+            Aplicar cupom
+        </button>
+
+        <p id="mensagem-cupom"></p>
+    </div>
+
+</div>
+
+<div>
+    <button type="button" id="LimparCarrinho">Limpar carrinho</button>
+</div>
+
+<div class="botao_carrinho">
+    <button type="button" id="Comprar">Comprar</button>
+</div>
+
+<footer>
+    <div class="rodape-final">
+        <p>&copy; <span id="current-year"></span> OpenBook</p>
+    </div>
+</footer>
+
+<script src="Scripts.js"></script>
+
+</body>
+
+</html>
