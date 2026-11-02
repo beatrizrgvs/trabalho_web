@@ -88,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                <div class="caixa-busca">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="search" id="busca" name="q" placeholder="Pesquisar...">
+                     <div id="sugestoes"></div>
                     <button type="submit">Buscar</button>
                 </div>
             </form>

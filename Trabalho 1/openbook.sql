@@ -52,3 +52,24 @@ VALUES
 ('Frankenstein', 16.90, 'Frankenstein.jpg', 'Victor Frankenstein desde muito jovem se dedicou aos estudos da filosofia e das ciências naturais. Até que, em uma experiência bem-sucedida (que lhe sugou a energia e o afastou do convívio dos seus entes queridos), ele foi capaz de dar vida a um ser de feições e trejeitos assustadores. A partir de então, criador e criatura passam a viver um jogo de perseguição repleto de sangue e horror, a primeira obra de ficção científica da literatura e um clássico do terror.', 'Principis', 2019, '8594318111', 'Ficção', 240, 'Comum'),
 ('Dom Casmurro', 71.66, 'DomCasmurro.jpg', 'Obra clássica do Realismo brasileiro e uma das mais famosas de Machado de Assis. Dom Casmurro é o romance mais estudado, comentado e discutido de Machado de Assis – o que significa dizer um dos mais estudados da Literatura brasileira. Publicado originalmente em 1899, o livro conta a história de Bentinho e Capitu, desde o namoro juvenil até o casamento atormentado pelo ciúme e pela dúvida que virou polêmica literária: Capitu traiu o marido com o melhor amigo dele, Escobar? Os fatos são narrados por Bentinho, que relembra, já em idade avançada, episódios de sua vida, de maneira subjetiva e passional.', 'Edições Best Bolso', 2016, '978-8577995189', 'Romance', 269, 'Dura'),
 ('Dom Quixote', 67.00, 'domQuixote.jpg', 'De tanto ler antigos livros de cavalaria, o pacato Alonso Quijano perde o juízo e resolve levar a vida de um cavaleiro andante. Depois de equipar-se com a velha armadura herdada dos bisavós e de fazer-se ordenar por um estalajadeiro, transforma-se no mui afamado Dom Quixote de La Mancha. Na companhia do cavalo Rocinante e do fiel escudeiro Sancho Pança, sai mundo afora em busca de aventuras. Pelo caminho, o engenhoso fidalgo encontra uma caravana de beneditinos, uma procissão de penitentes e os famosos moinhos de vento - porém a sede de aventuras, agravada pela sandice, leva-o a ver bruxos, fantasmas e hordas de gigantes.', 'L&PM', 2007, '8525433632', 'Infanto juvenil', 64, 'Comum');
+
+
+CREATE TABLE avaliacoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    livro_id INT(10) UNSIGNED NOT NULL,
+    usuario_id INT(10) UNSIGNED NOT NULL,
+    usuario VARCHAR(30) NOT NULL,
+    nota INT NOT NULL,
+    comentario TEXT NOT NULL,
+    data_avaliacao DATE NOT NULL,
+
+    CONSTRAINT fk_avaliacao_produto
+        FOREIGN KEY (livro_id)
+        REFERENCES produtos(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_avaliacao_usuario
+        FOREIGN KEY (usuario_id)
+        REFERENCES usuarios(id)
+        ON DELETE CASCADE
+);

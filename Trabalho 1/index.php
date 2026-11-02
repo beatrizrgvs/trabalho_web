@@ -52,6 +52,7 @@ $linhas = array_chunk($produtos, 4);
                 <div class="caixa-busca">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="search" id="busca" name="q" placeholder="Pesquisar...">
+                    <div id="sugestoes"></div>
                     <button type="submit">Buscar</button>
                 </div>
             </form>

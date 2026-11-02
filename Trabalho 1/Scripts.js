@@ -170,6 +170,8 @@ if(campoQnt){
     campoQnt.addEventListener("input", mudar_preco);
 }
 
+
+
 function add_carrinho(){
 
     const campoQnt = document.getElementById("qnt");
@@ -200,16 +202,48 @@ function add_carrinho(){
         precoTotal: precoTotal
     };
 
-    let produtos = JSON.parse(localStorage.getItem("dadosProdutos")) || [];
+    //pega os produtos
+    // Pega os produtos salvos
+    let produtosSalvos = JSON.parse(localStorage.getItem("dadosProdutos")) || [];
 
-    produtos.push(dadosProduto);
+    // Junta produtos repetidos que já estavam salvos
+    let produtos = [];
 
+    produtosSalvos.forEach(function(produto) {
+
+        const nomeSalvo = produto.nome.trim().toLowerCase();
+
+        const encontrado = produtos.find(function(item) {
+            return item.nome.trim().toLowerCase() === nomeSalvo;
+        });
+
+        if (encontrado) {
+            encontrado.qnt += Number(produto.qnt);
+            encontrado.precoTotal = encontrado.precoUn * encontrado.qnt;
+        } else {
+            produtos.push(produto);
+        }
+
+    });
+
+    // Verifica se o produto atual já existe
+    const existente = produtos.find(function(produto) {
+        return produto.nome.trim().toLowerCase() === nome.trim().toLowerCase();
+    });
+
+    if (existente) {
+        existente.qnt += qnt;
+        existente.precoTotal = existente.precoUn * existente.qnt;
+    } else {
+        produtos.push(dadosProduto);
+    }
+
+    // Salva o carrinho atualizado
     localStorage.setItem("dadosProdutos", JSON.stringify(produtos));
 
     alert("Produto adicionado ao carrinho!");
 }
 
-/* \\\\Carrinho\\\\ */
 
 /* \\\\Carrinho\\\\ */
 
@@ -609,4 +643,31 @@ if (campoBusca && sugestoes) {
 
     });
 
+}
+function calcularParcelas() {
+    const precoElemento = document.getElementById("preco_vista");
+    const parcelas = document.getElementById("parcelas");
+
+    if (!precoElemento || !parcelas) return;
+
+    const encontrado = precoElemento.textContent.match(/[\d]+,[\d]{2}/);
+
+    if (!encontrado) return;
+
+    const preco = Number(encontrado[0].replace(",", "."));
+
+    parcelas.querySelectorAll("option").forEach(function(opcao) {
+        const quantidade = Number(opcao.value);
+        const valor = preco / quantidade;
+
+        opcao.textContent =
+            quantidade + "x de R$ " +
+            valor.toFixed(2).replace(".", ",");
+    });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", calcularParcelas);
+} else {
+    calcularParcelas();
 }
